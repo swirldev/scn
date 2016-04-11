@@ -17,6 +17,4 @@ for(i in courses){
   pack_course(export_path = ".")
 }
 
-for(i in list.files(pattern = "swc$")){
-  unpack_course(i, ".")
-}
+# for(i in list.files(pattern = "swc$")){unpack_course(i, ".")}
