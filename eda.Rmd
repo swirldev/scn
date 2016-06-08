@@ -1,0 +1,24 @@
+---
+title: "Exploratory Data Analysis"
+---
+
+### Author
+
+- Team swirl
+
+### Co-Authors
+
+- Nick Carchedi
+- Bill Bauer
+- Gina Grdina
+- Sean Kross
+
+### Installation
+
+```r
+swirl::install_course("Exploratory Data Analysis")
+```
+
+### Website
+
+- https://github.com/swirldev/swirl_courses

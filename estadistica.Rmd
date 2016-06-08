@@ -1,0 +1,17 @@
+---
+title: "Programacion Estadistica R"
+---
+
+### Author
+
+- Ismael Fernández
+
+### Installation
+
+```r
+swirl::install_course_github("ifunam", "programacion-estadistica-r")
+```
+
+### Website
+
+- https://github.com/ifunam/programacion-estadistica-r

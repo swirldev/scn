@@ -1,0 +1,18 @@
+---
+title: "Data Science and R"
+---
+
+### Author
+
+- Wush Wu
+
+### Installation
+
+```r
+source("http://wush978.github.io/R/init-swirl.R")
+```
+
+### Website
+
+- http://datascienceandr.org/ 
+- https://github.com/wush978/DataScienceAndR/tree/course

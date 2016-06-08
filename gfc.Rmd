@@ -1,0 +1,17 @@
+---
+title: "Google Forms Course"
+---
+
+### Author
+
+- Sean Kross
+
+### Installation
+
+```r
+swirl::install_course_github("seankross", "Google_Forms_Course")
+```
+
+### Website
+
+- https://github.com/seankross/Google_Forms_Course

@@ -1,0 +1,23 @@
+---
+title: "Welcome to the Swirl Course Network"
+---
+
+---
+
+## For Students:
+
+This website is a directory for free and open source swirl courses. You can
+browse available courses by the name of the course or by the name of the author
+of the course. Click "Browse Courses" above to start browsing!
+
+---
+
+## For swirl Course Authors:
+
+Adding your course to the Swirl Course Network offers several advantages:
+
+- Students can discover your course more easily.
+- Your course can in installed with the `install_course()` function.
+- Team swirl can more easily provide support for your course.
+
+Click [here]() to learn how to share your course on the Swirl Course Network.

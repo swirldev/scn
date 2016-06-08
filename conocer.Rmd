@@ -1,0 +1,17 @@
+---
+title: "ConoceR"
+---
+
+### Author
+
+- David Duncan
+
+### Installation
+
+```r
+swirl::install_course_github('dhduncan','ConoceR')
+```
+
+### Website
+
+- https://github.com/dhduncan/ConoceR

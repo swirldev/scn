@@ -1,0 +1,24 @@
+---
+title: "Regression Models"
+---
+
+### Author
+
+- Team swirl
+
+### Co-Authors
+
+- Nick Carchedi
+- Bill Bauer
+- Gina Grdina
+- Sean Kross
+
+### Installation
+
+```r
+swirl::install_course("Regression Models")
+```
+
+### Website
+
+- https://github.com/swirldev/swirl_courses

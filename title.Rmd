@@ -1,0 +1,43 @@
+---
+title: "Swirl Courses Organized by Title"
+output:
+  html_document:
+    toc_depth: 2
+    toc_float:
+      collapsed: true
+---
+
+## C
+
+- [ConoceR](conocer.html) by David Duncan
+
+## D
+
+- [Data Science and R](dsandr.html) by Wush Wu
+
+## E
+
+- [Exploratory Data Analysis](eda.html) by Team swirl
+
+## G
+
+- [Getting and Cleaning Data](getclean.html) by Team swirl
+- [Google Forms Course](gfc.html) by Sean Kross
+
+## P
+
+- [Programacion Estadistica R](estadistica.html) by Ismael Fernández
+- [Programando en R](programando.html) by José R Sosa
+
+## Q
+
+- [qss-swirl](qss.html) by Kosuke Imai
+
+## R
+
+- [R Programming](rprog.html) by Team swirl
+- [Regression Models](regmod.html) by Team swirl
+
+## S
+
+- [Statistical Inference](statinf.html) by Team swirl

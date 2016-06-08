@@ -1,0 +1,23 @@
+---
+title: "qss-swirl"
+---
+
+### Author
+
+- Kosuke Imai
+
+### Co-Authors
+
+- Winston Chou
+- Evan Chow
+- Elisha Cohen
+
+### Installation
+
+```r
+swirl::install_course_github("kosukeimai", "qss-swirl")
+```
+
+### Website
+
+- https://github.com/kosukeimai/qss-swirl

@@ -1,0 +1,21 @@
+---
+title: "Programando en R"
+---
+
+### Author
+
+- José R Sosa
+
+### Co-Authors
+
+- Team swirl
+
+### Installation
+
+```r
+swirl::install_course_github('josersosa','Programando_en_R')
+```
+
+### Website
+
+- https://github.com/josersosa/Programando_en_R

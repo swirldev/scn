@@ -1,0 +1,18 @@
+title: "The swirl Course Network"
+left:
+  - text: "Home"
+    href: index.html
+  - text: "Browse Courses"
+    menu:
+      - text: "By Title"
+        href: title.html
+      - text: "-----------------"
+      - text: "By Author's Name"
+        href: surname.html
+  - text: "Write a swirl Course"
+    href: http://swirlstats.com/swirlify
+  - text: "swirl Main Site"
+    href: http://swirlstats.com
+right:
+  - icon: fa-github fa-lg
+    href: https://github.com/swirldev/scn
