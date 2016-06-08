@@ -13,6 +13,10 @@ title: "R Programming"
 - Gina Grdina
 - Sean Kross
 
+### Description
+
+The basics of programming in R.
+
 ### Installation
 
 ```r

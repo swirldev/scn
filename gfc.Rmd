@@ -6,6 +6,12 @@ title: "Google Forms Course"
 
 - Sean Kross
 
+### Description
+
+An example course that instructors can use as a template for collecting students'
+progress through a swirl course. This approach is recommended for courses that 
+are taught in person.
+
 ### Installation
 
 ```r

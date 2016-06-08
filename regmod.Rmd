@@ -13,6 +13,10 @@ title: "Regression Models"
 - Gina Grdina
 - Sean Kross
 
+### Description
+
+The basics of regression modeling in R.
+
 ### Installation
 
 ```r
