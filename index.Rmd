@@ -26,5 +26,5 @@ advantages:
 - Your course can in installed with the `install_course()` function.
 - Team swirl can more easily provide support for your course.
 
-Click [here](http://swirlstats.com/swirlify/sharing.html) to learn how to share 
+Click [here](http://swirlstats.com/swirlify/sharing.html#sharing_your_course_on_the_swirl_course_network) to learn how to share 
 your course on the Swirl Course Network.
