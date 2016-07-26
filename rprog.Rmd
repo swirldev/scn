@@ -23,6 +23,12 @@ The basics of programming in R.
 swirl::install_course("R Programming")
 ```
 
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/R_Programming.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
 ### Website
 
 - https://github.com/swirldev/swirl_courses
