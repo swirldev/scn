@@ -22,6 +22,11 @@ output:
 - Kosuke Imai
     - [qss-swirl](qss.html)
     
+## P
+    
+- Roger Peng
+    - [The R Programming Environment](rpe.html)
+    
 ## K
 
 - Sean Kross

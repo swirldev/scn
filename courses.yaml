@@ -1,5 +1,14 @@
-- Exploratory Data Analysis
-- R Programming
-- Statistical Inference
-- Getting and Cleaning Data
-- Regression Models
+The_Data_Science_Specialization:
+  git_clone_url: https://github.com/swirldev/swirl_courses.git
+  subdirs: 
+    - Exploratory_Data_Analysis
+    - R_Programming
+    - Statistical_Inference
+    - Getting_and_Cleaning_Data
+    - Regression_Models
+
+R_Programming_E:
+  git_clone_url: https://github.com/swirldev/R_Programming_E.git
+
+The_R_Programming_Environment:
+  git_clone_url: https://github.com/swirldev/The_R_Programming_Environment.git

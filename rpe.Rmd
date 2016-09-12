@@ -1,0 +1,33 @@
+---
+title: "The R Programming Environment"
+---
+
+### Author
+
+- Roger Peng
+
+### Co-Authors
+
+- Brooke Anderson
+- Sean Kross
+
+### Description
+
+The first course in the Mastering Software Development in R
+series.
+
+### Installation
+
+```r
+swirl::install_course("The R Programming Environment")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/The_R_Programming_Environment.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/The_R_Programming_Environment
