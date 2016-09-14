@@ -36,7 +36,7 @@ output:
 ## R
 
 - [R Programming](rprog.html) by Team swirl
-- [The R Programming Environment](rpe.html) by Team swirl
+- [The R Programming Environment](rpe.html) by Roger Peng
 - [Regression Models](regmod.html) by Team swirl
 
 ## S

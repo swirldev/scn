@@ -1,7 +1,13 @@
 library(yaml)
 library(swirlify)
 
+args <- commandArgs(trailingOnly = TRUE)
 course_list <- yaml.load_file("courses.yaml")
+
+if(length(args) > 0 && args[1] %in% names(course_list)){
+  course_list <- list(course_list[[args[1]]])
+  names(course_list)[1] <- args[1]
+}
 
 for(i in seq_along(course_list)){
   key <- course_list[[i]]
