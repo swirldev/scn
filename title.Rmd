@@ -7,6 +7,10 @@ output:
       collapsed: true
 ---
 
+## A
+
+- [Advanced R Programming](arp.html) by Roger Peng
+
 ## C
 
 - [ConoceR](conocer.html) by David Duncan

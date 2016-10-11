@@ -12,3 +12,8 @@ R_Programming_E:
 
 The_R_Programming_Environment:
   git_clone_url: https://github.com/swirldev/The_R_Programming_Environment.git
+
+Advanced_R_Programming:
+  git_clone_url: https://github.com/swirldev/Advanced_R_Programming.git
+
+

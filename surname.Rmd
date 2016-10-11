@@ -26,6 +26,7 @@ output:
     
 - Roger Peng
     - [The R Programming Environment](rpe.html)
+    - [Advanced R Programming](arp.html)
     
 ## K
 

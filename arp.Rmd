@@ -1,0 +1,33 @@
+---
+title: "Advanced R Programming"
+---
+
+### Author
+
+- Roger Peng
+
+### Co-Authors
+
+- Brooke Anderson
+- Sean Kross
+
+### Description
+
+The second course in the Mastering Software Development in R
+series.
+
+### Installation
+
+```r
+swirl::install_course("Advanced R Programming")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/Advanced_R_Programming.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/Advanced_R_Programming
