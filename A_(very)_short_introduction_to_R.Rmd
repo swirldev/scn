@@ -1,0 +1,35 @@
+---
+title: "A (very) short introduction to R"
+---
+
+### Author
+
+- Claudia Brauer
+
+### Co-Authors
+
+- Paul Torfs
+
+### Description
+
+This course is the swirl version of [A (very) short introduction to R](https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/blob/master/documents/A%20(very)%20short%20introduction%20to%20R.pdf). This document has 10 pages of background and exercises and 2 pages listing useful functions (to use as a reference). Working through this tutorial takes 1 to 2 hours (depending on your background). 
+
+Instead of reading the pdf and doing the ToDo exercises, you can also go through the text and exercises interactively, using swirl. The contents are the same (with a few exceptions), so you can open the pdf version alongside to look up how to do something you learned before or browse through the references on the last two pages.
+
+This swirl course is brand new, so it may still contain errors. If you find any, let me know on the [issues page](https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/issues).
+
+### Installation
+
+```r
+swirl::install_course("A_(very)_short_introduction_to_R")
+```
+
+#### Manual Installation
+
+1. Download [this](https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/blob/master/documents/A_(very)_short_introduction_to_R.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R
