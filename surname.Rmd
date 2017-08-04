@@ -7,6 +7,11 @@ output:
       collapsed: true
 ---
 
+## B
+
+- Claudia Brauer
+    - [A (Very) Short Introduction to R](A_(very)_short_introduction_to_R.html)
+
 ## D
 
 - David Duncan
