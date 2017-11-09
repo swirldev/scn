@@ -52,5 +52,7 @@ output:
 
 ## W
 
+- Stephan Weibelzahl
+    - [R Programmieren](R_Programmieren.html)
 - Wush Wu
     - [Data Science and R](dsandr.html)

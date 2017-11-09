@@ -40,6 +40,7 @@ output:
 ## R
 
 - [R Programming](rprog.html) by Team swirl
+- [R Programmieren](R_Programmieren.html) by Stephan Weibelzahl
 - [The R Programming Environment](rpe.html) by Roger Peng
 - [Regression Models](regmod.html) by Team swirl
 
