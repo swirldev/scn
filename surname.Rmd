@@ -12,6 +12,11 @@ output:
 - Claudia Brauer
     - [A (Very) Short Introduction to R](A_(very)_short_introduction_to_R.html)
 
+## C
+
+- Kevin R. Carriere
+    - [Psychology Statistics](Psychology_Statistics.html)
+
 ## D
 
 - David Duncan
