@@ -1,0 +1,29 @@
+---
+title: "Regular Expressions"
+---
+  
+### Author
+  
+  - Jon Calder
+
+### Description
+
+Regular Expressions are a fundamental tool in the hands of any programmer when it comes to working with strings. This course will provide an overview of what is possible with regular expressions as they are applied in R.
+
+Though different programming languages often possess their own conventions and flavor when it comes to regular expressions, the vast majority of the knowledge you will obtain from this course is transferable to regular expressions in other programming languages.
+
+### Installation
+
+```r
+swirl::install_course("Regular Expressions")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/Regular_Expressions.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/jonmcalder/regular_expressions

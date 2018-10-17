@@ -14,6 +14,9 @@ output:
 
 ## C
 
+- Jon Calder
+    - [Regular Expressions](regular_expressions.html)
+
 - Kevin R. Carriere
     - [Psychology Statistics](Psychology_Statistics.html)
 

@@ -43,6 +43,7 @@ output:
 - [R Programming](rprog.html) by Team swirl
 - [R Programmieren](R_Programmieren.html) by Stephan Weibelzahl
 - [The R Programming Environment](rpe.html) by Roger Peng
+- [Regular Expressions](regular_expressions.html) by Jon Calder
 - [Regression Models](regmod.html) by Team swirl
 
 ## S
