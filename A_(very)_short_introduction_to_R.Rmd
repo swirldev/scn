@@ -16,7 +16,7 @@ This course is the swirl version of [A (very) short introduction to R](https://g
 
 Instead of reading the pdf and doing the ToDo exercises, you can also go through the text and exercises interactively, using swirl. The contents are the same (with a few exceptions), so you can open the pdf version alongside to look up how to do something you learned before or browse through the references on the last two pages.
 
-This swirl course is brand new, so it may still contain errors. If you find any, let me know on the [issues page](https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/issues).
+If you find any errors, please let me know on the [issues page](https://github.com/ClaudiaBrauer/A-very-short-introduction-to-R/issues).
 
 ### Installation
 
