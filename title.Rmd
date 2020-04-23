@@ -32,7 +32,6 @@ output:
 
 - [Programacion Estadistica R](estadistica.html) by Ismael Fernández
 - [Programando en R](programando.html) by José R Sosa
-- [Psychology Statistics](Psychology_Statistics.html) by Kevin R. Carriere
 
 ## Q
 
