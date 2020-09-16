@@ -35,17 +35,31 @@ output:
 - Kosuke Imai
     - [qss-swirl](qss.html)
     
+## K
+
+- Sean Kross
+    - [Google Forms Course](gfc.html)
+
 ## P
     
 - Roger Peng
     - [The R Programming Environment](rpe.html)
     - [Advanced R Programming](arp.html)
     
-## K
+## R
 
-- Sean Kross
-    - [Google Forms Course](gfc.html)
-
+- RLab-Team
+    - [Daten einlesen und kennenlernen](Daten_einlesen_und_kennenlernen.html)
+    - [Daten visualisieren mit ggplot2](Daten_visualisieren_mit_ggplot2.html)
+    - [Deskriptive Statistik Gelaendeklimatologie](Deskriptive_Statistik_Gelaendeklimatologie.html)
+    - [Deskriptive Statistik mit bodenkundlichen Daten](Deskriptive_Statistik_mit_bodenkundlichen_Daten.html)
+    - [Deskriptive Statistik und Vergleiche meteorologischer Zeitreihen](Deskriptive_Statistik_und_Vergleiche_meteorologischer_Zeitreihen.html)
+    - [Einfuehrung in Datenaufbereitung mit tidyR](Einfuehrung_in_Datenaufbereitung_mit_tidyR.html)
+    - [Einfuehrung in Datenhandling und Visualisieren von Klimadaten](Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten.html)
+    - [MARSYS Data analysis with R](MARSYS_Data_analysis_with_R.html)
+    - [MARSYS Statistik und Programmierung mit R](MARSYS_Statistik_und_Programmierung_mit_R.html)
+    - [R-Grundlagen](R-Grundlagen.html)
+    
 ## S
 
 - José R Sosa
