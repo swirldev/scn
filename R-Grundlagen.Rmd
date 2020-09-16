@@ -1,0 +1,34 @@
+---
+title: "R-Grundlagen (in german)"
+---
+
+### Author
+
+- RLab-Team
+
+### Co-Authors
+
+- Ronja Gottschalk (coding, design)
+- Melanie Werner (coding, design)
+- Niels Schwab (design)
+
+### Description
+
+R as calculator, setting and cleaning up workspace, how to use R help and where to find support. German course language facilitates first steps with R for german beginners. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
+
+### Installation
+
+```r
+swirl::install_course("R-Grundlagen")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/R-Grundlagen.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/scn
+- https://rlab.blogs.uni-hamburg.de
