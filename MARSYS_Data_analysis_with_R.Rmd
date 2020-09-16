@@ -1,0 +1,38 @@
+---
+title: "MARSYS Data analysis with R"
+---
+
+### Author
+
+- RLab-Team
+
+### Co-Authors
+
+- Jan Conradt (coding, design)
+- Saskia A. Otto (coding, design)
+- Niels Schwab (design)
+- Claudia Günther (data contributor)
+
+### Description
+
+Supplement to a course taught as part of the curriculum of the Master program MARSYS-MARine EcoSYStem and Fishery Sciences at the Institute of Marine Ecosystem and Fishery Science (IMF), University of Hamburg, Germany. The course introduces the principles of data science and how to mine out insights from data to understand complex behaviors, trends, and inferences. It teaches skills in three major areas with a focus on marine topics. However, the course can be utilized by any other scientist as key concepts are the same across disciplines. (https://mareds.github.io/r_course/index.html)
+
+Quiz questions in the lectures have been additionally converted into a swirl course. Now, students can answer the quiz questions directly from within R, without all the additional information shown in the slides. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
+
+### Installation
+
+```r
+swirl::install_course("MARSYS_Data_analysis_with_R")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/MARSYS_Data_analysis_with_R.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/scn
+- https://rlab.blogs.uni-hamburg.de
+- https://mareds.github.io/r_course/index.html
