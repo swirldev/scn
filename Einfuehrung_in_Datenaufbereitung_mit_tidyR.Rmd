@@ -8,14 +8,14 @@ title: "Einführung in Datenaufbereitung mit tidyR (in german)"
 
 ### Co-Authors
 
-- Jan Conradt (programming, design)
+- Jan Conradt (coding, design)
 - Niels Schwab (design)
-- Saskia A. Otto (design)
+- Saskia A. Otto (coding, design)
 - Claudia Günther (data contributor)
 
 ### Description
 
-Introduction to data preparation using tidyR and example data from Marine Ecosystem and Fishery Science. German course language facilitates first steps with R for german beginners. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
+Introduction to data preparation using tidyR and example data from marine ecosystem and fishery science. German course language facilitates first steps with R for german beginners. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
 
 ### Installation
 
@@ -31,5 +31,5 @@ swirl::install_course("Einfuehrung_in_Datenaufbereitung_mit_tidyR")
 
 ### Website
 
-- https://github.com/swirldev/swirl_courses
+- https://github.com/swirldev/scn
 - https://rlab.blogs.uni-hamburg.de

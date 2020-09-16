@@ -1,0 +1,34 @@
+---
+title: "MARSYS Statistik und Programmierung mit R (in german)"
+---
+
+### Author
+
+- RLab-Team
+
+### Co-Authors
+
+- Jan Conradt (coding)
+- Niels Schwab (coding, design)
+- Christian Moellmann (design)
+
+### Description
+
+Introduction to R basics, plotting with ggplot2, correlation and regression analysis. Example data from marine ecosystem and fishery science (Master program MARSYS-MARine EcoSYStem and Fishery Sciences at the Institute of Marine Ecosystem and Fishery Science (IMF), University of Hamburg, Germany). German course language facilitates first steps with R for german beginners. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
+
+### Installation
+
+```r
+swirl::install_course("MARSYS_Statistik_und_Programmierung_mit_R")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/MARSYS_Statistik_und_Programmierung_mit_R.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/scn
+- https://rlab.blogs.uni-hamburg.de

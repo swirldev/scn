@@ -1,0 +1,33 @@
+---
+title: "Einfuehrung in Datenhandling und Visualisieren von Klimadaten (in german)"
+---
+
+### Author
+
+- RLab-Team
+
+### Co-Authors
+
+- Nadine Kaul (coding, design)
+- Niels Schwab (design)
+
+### Description
+
+Basic meteorologic time series data types, transformation, basic operations and visualization. German course language facilitates first steps with R for german beginners. The course is part of the e-learning program "RLab – Skriptbasierte modulare Umweltstatistik" (https://rlab.blogs.uni-hamburg.de, funded by BMBF 01PL17033)
+
+### Installation
+
+```r
+swirl::install_course("Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/scn
+- https://rlab.blogs.uni-hamburg.de
