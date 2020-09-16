@@ -18,15 +18,27 @@ output:
 ## D
 
 - [Data Science and R](dsandr.html) by Wush Wu
+- [Daten einlesen und kennenlernen](Daten_einlesen_und_kennenlernen.html) by RLab-Team
+- [Daten visualisieren mit ggplot2](Daten_visualisieren_mit_ggplot2.html) by RLab-Team
+- [Deskriptive Statistik Gelaendeklimatologie](Deskriptive_Statistik_Gelaendeklimatologie.html) by RLab-Team
+- [Deskriptive Statistik mit bodenkundlichen Daten](Deskriptive_Statistik_mit_bodenkundlichen_Daten.html) by RLab-Team
+- [Deskriptive Statistik und Vergleiche meteorologischer Zeitreihen](Deskriptive_Statistik_und_Vergleiche_meteorologischer_Zeitreihen.html) by RLab-Team
 
 ## E
 
+- [Einfuehrung in Datenaufbereitung mit tidyR](Einfuehrung_in_Datenaufbereitung_mit_tidyR.html) by RLab-Team
+- [Einfuehrung in Datenhandling und Visualisieren von Klimadaten](Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten.html) by RLab-Team
 - [Exploratory Data Analysis](eda.html) by Team swirl
 
 ## G
 
 - [Getting and Cleaning Data](getclean.html) by Team swirl
 - [Google Forms Course](gfc.html) by Sean Kross
+
+## M
+
+- [MARSYS Data analysis with R](MARSYS_Data_analysis_with_R.html) by RLab-Team
+- [MARSYS Statistik und Programmierung mit R](MARSYS_Statistik_und_Programmierung_mit_R.html) by RLab-Team
 
 ## P
 
@@ -39,6 +51,7 @@ output:
 
 ## R
 
+- [R-Grundlagen](R-Grundlagen.html) by RLab-Team
 - [R Programming](rprog.html) by Team swirl
 - [R Programmieren](R_Programmieren.html) by Stephan Weibelzahl
 - [The R Programming Environment](rpe.html) by Roger Peng
