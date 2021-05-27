@@ -1,0 +1,1 @@
+print(c(Chi_sq=chi_cal,Chi_tab=chi_tab))
