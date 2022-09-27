@@ -6,7 +6,7 @@ name: Render website
 on:
   workflow_dispatch:
   push:
-    branches: [ main, staging ]
+    branches: [ main, gh-pages ]
     paths:
       - '**.Rmd'
 
