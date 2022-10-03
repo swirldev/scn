@@ -1,0 +1,42 @@
+---
+title: "DataTrail - 05 Get Stats"
+---
+
+### Author
+
+- DataTrail team
+
+### Co-Authors
+
+- Candace Savonen
+- Shannon Ellis
+
+### Description
+
+This initial swirl module is a part of the DataTrail series and corresponds the introduction section: `05 Get Stats` which can be [seen here without login](https://datatrail-jhu.github.io/DataTrail/getting-statistics.html).
+
+You can run through this section on the Leanpub course and get credit for this module as well as certification [by signing up here](https://leanpub.com/c/datatrail).
+
+[DataTrail](https://www.datatrail.org/) is a no-cost, paid 14-week educational initiative for young-adult, high school and GED-graduates. DataTrail aims to equip members of underserved communities with the necessary skills and support required to work in the booming field of data science.
+
+### Installation
+
+```r
+swirl::install_course("DataTrail_05_Get_Stats")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/DataTrail_05_Get_Stats.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+#### Encountering issues?
+
+If you are encountering any issues with this swirl module, [please file an issue here](https://github.com/datatrail-jhu/datatrail-swirl/issues/new).
+
+### Websites
+
+- https://github.com/swirldev/scn
+- https://www.datatrail.org/
+- https://leanpub.com/c/datatrail

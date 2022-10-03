@@ -17,6 +17,12 @@ output:
 
 ## D
 
+- [DataTrail - 01 Forming Questions](DataTrail_01_Forming_Questions.html)
+- [DataTrail - 02 Getting Data](DataTrail_02_Getting_Data.html)
+- [DataTrail - 03 Cleaning the Data](DataTrail_03_Cleaning_the_Data.html)
+- [DataTrail - 04 Plot the Data](DataTrail_04_Plot_the_Data.html)
+- [DataTrail - 05 Get Stats](DataTrail_05_Get_Stats.html)
+- [DataTrail - 06 Share Results](DataTrail_06_Share_Results.html)
 - [Data Science and R](dsandr.html) by Wush Wu
 - [Daten einlesen und kennenlernen](Daten_einlesen_und_kennenlernen.html) by RLab-Team
 - [Daten visualisieren mit ggplot2](Daten_visualisieren_mit_ggplot2.html) by RLab-Team
