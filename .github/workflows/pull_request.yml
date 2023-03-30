@@ -8,20 +8,14 @@ on:
 
 jobs:
 
-  yaml-check:
-    name: Load user automation choices
+  create-branch:
+    name: Create Branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-        # Use the yaml-env-action action.
-      - name: Load environment from YAML
-        uses: doughepi/yaml-env-action@v1.0.0
-        with:
-            files: config_automation.yml # Pass a space-separated list of configuration files. Rightmost files take precedence.
 
       - name: Make branch if it doesn't exist
         run: |
@@ -39,32 +33,10 @@ jobs:
           fi
         shell: bash
 
-      - name: Check if this is a private repository
-        id: public_repository
-        run: |
-          public=$(curl -Is https://github.com/${GITHUB_REPOSITORY} | head -1 | tr -dc '0-9')
-          if [ $public -eq 2200 ];then
-            public='true'
-            echo 'public repository'
-          else
-            public='false'
-            echo 'private repository'
-          fi
-          echo ::set-output name=public::$public
-        shell: bash
-
-    outputs:
-      public_repository: "${{ steps.public_repository.outputs.public }}"
-      toggle_spell_check: "${{ env.SPELL_CHECK }}"
-      toggle_url_check: "${{ env.URL_CHECKER }}"
-      toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
-      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
-
 ########################## Make the error reports ##############################
   spell-check:
     name: Check spelling
     needs: yaml-check
-    if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
     uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
     with:
       check_type: spelling
@@ -74,20 +46,18 @@ jobs:
   url-check:
     name: Check URLs
     needs: yaml-check
-    if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
     uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
     with:
       check_type: urls
       error_min: 0
       gh_pat: secrets.GH_PAT
-      
+
   render-preview:
     name: Render preview
     needs: yaml-check
     runs-on: ubuntu-latest
     container:
-      image: jhudsl/course_template:main
-    if: ${{needs.yaml-check.outputs.toggle_render_preview == 'yes'}}
+      image: jhudsl/base_ottr:main
 
     steps:
       - name: Checkout files
