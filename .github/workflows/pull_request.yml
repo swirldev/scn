@@ -58,180 +58,29 @@ jobs:
       toggle_spell_check: "${{ env.SPELL_CHECK }}"
       toggle_url_check: "${{ env.URL_CHECKER }}"
       toggle_render_preview: "${{ env.RENDER_PREVIEW }}"
+      rendering_docker_image: "${{ env.RENDERING_DOCKER_IMAGE }}"
 
+########################## Make the error reports ##############################
   spell-check:
     name: Check spelling
     needs: yaml-check
-    runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_spell_check == 'yes'}}
-    container:
-      image: jhudsl/course_template:main
-
-    steps:
-      - name: Checkout files
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Configure git
-        run: |
-          git config --local user.email "itcrtrainingnetwork@gmail.com"
-          git config --local user.name "jhudsl-robot"
-
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          git fetch --all
-          git checkout $branch_name
-          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
-        shell: bash
-
-      - name: Run spell check
-        id: spell_check_run
-        run: |
-          results=$(Rscript "scripts/spell-check.R")
-          echo "::set-output name=sp_chk_results::$results"
-
-      - name: Commit spell check errors
-        run: |
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          git add --force check_reports/spell_check_results.tsv || echo "No changes to commit"
-          git commit -m 'Add spell check file' || echo "No changes to commit"
-          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
-          git push --force origin $branch_name || echo "No changes to commit"
-
-      - name: Build components of the spell check comment
-        id: build-components
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: |
-          branch_name='preview-${{ github.event.pull_request.number }}'
-          sp_error_url=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/spell_check_results.tsv
-          echo ::set-output name=time::$(date +'%Y-%m-%d')
-          echo ::set-output name=commit_id::$GITHUB_SHA
-          echo ::set-output name=sp_error_url::$sp_error_url
-
-      # Handle the commenting
-      - name: Find Comment
-        uses: peter-evans/find-comment@v1
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: 'github-actions[bot]'
-          body-includes: spelling errors
-
-      - name: Spelling errors!
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            :warning: There are spelling errors that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/Spell-check).
-            [Download the errors here.](${{ steps.build-components.outputs.sp_error_url }})
-            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-          edit-mode: replace
-
-      - name: Check spell check results - fail if too many errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results >= 3 }}
-        run: exit 1
-
-      - name: No spelling errors
-        if: ${{ steps.spell_check_run.outputs.sp_chk_results < 3 }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            No spelling errors! :tada:
-            _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-          edit-mode: replace
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: spelling
+      error_min: 3
+      gh_pat: secrets.GH_PAT
 
   url-check:
     name: Check URLs
     needs: yaml-check
-    runs-on: ubuntu-latest
     if: ${{needs.yaml-check.outputs.toggle_url_check == 'yes'}}
-    container:
-      image: jhudsl/course_template:main
-
-    steps:
-    - name: checkout repo
-      uses: actions/checkout@v3
-
-    - name: Configure git
-      run: |
-        git config --local user.email "itcrtrainingnetwork@gmail.com"
-        git config --local user.name "jhudsl-robot"
-
-        branch_name='preview-${{ github.event.pull_request.number }}'
-        git fetch --all
-        git checkout $branch_name
-        git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
-      shell: bash
-
-    - name: URLs checker
-      id: url_errors
-      run: |
-        chk_results=$(Rscript scripts/url-check.R)
-        echo $chk_results
-
-        echo "::set-output name=url_results::$chk_results"
-
-    - name: Commit URL check
-      run: |
-        branch_name='preview-${{ github.event.pull_request.number }}'
-        git add --force check_reports/url_checks.tsv || echo "No changes to commit"
-        git commit -m 'Add URL check file' || echo "No changes to commit"
-        git fetch
-        git merge -s recursive --strategy-option=ours origin/${{ github.head_ref }} --allow-unrelated-histories
-        git push --force origin $branch_name || echo "No changes to commit"
-
-    - name: Build components of the spell check comment
-      id: build-components
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: |
-        branch_name='preview-${{ github.event.pull_request.number }}'
-        url_errors=https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/$branch_name/check_reports/url_checks.tsv
-        echo ::set-output name=time::$(date +'%Y-%m-%d')
-        echo ::set-output name=commit_id::$GITHUB_SHA
-        echo ::set-output name=url_errors::$url_errors
-
-    # Handle the commenting
-    - name: Find Comment
-      uses: peter-evans/find-comment@v1
-      id: fc
-      with:
-        issue-number: ${{ github.event.pull_request.number }}
-        comment-author: 'github-actions[bot]'
-        body-includes: broken URLs
-
-    - name: URL errors!
-      if: ${{ steps.url_errors.outputs.url_results > 0 }}
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        comment-id: ${{ steps.fc.outputs.comment-id }}
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          :warning: There are broken URLs that need to be addressed. [Read this guide for more info](https://github.com/jhudsl/OTTR_Template/wiki/How-to-set-up-and-customize-GitHub-actions-robots#check-for-broken-urls).
-          [Download the errors here.](${{ steps.build-components.outputs.url_errors }})
-          _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-        edit-mode: replace
-
-    - name: Check URL results - fail if too many errors
-      if: ${{ steps.url_errors.outputs.url_results > 0 }}
-      run: exit 1
-
-    - name: No URL errors
-      if: ${{ steps.url_errors.outputs.url_results == 0 }}
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        comment-id: ${{ steps.fc.outputs.comment-id }}
-        issue-number: ${{ github.event.pull_request.number }}
-        body: |
-          No broken URLs detected! :tada:
-          _Comment updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
-        edit-mode: replace
-
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: urls
+      error_min: 0
+      gh_pat: secrets.GH_PAT
+      
   render-preview:
     name: Render preview
     needs: yaml-check
