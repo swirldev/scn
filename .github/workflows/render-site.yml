@@ -1,0 +1,68 @@
+
+# It was adapted by Candace Savonen for the OTTR_template https://github.com/jhudsl/OTTR_Template.
+
+# This code was adapted by Carrie Wright to enable automated rendering of the site associated with this repository
+
+name: Render html
+
+# Controls when the action will run. Triggers the workflow on push
+# events only for the master branch
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.Rmd'
+      - styles.css
+      - _site.yml
+      - subdir_html/*.Rmd
+      - resources/images/*.png
+      - resources/images/favicon.ico
+      - site_libs/*
+
+jobs:
+  # This workflow contains a single job called "build-all"
+  render-main:
+    runs-on: ubuntu-latest
+          # install.packages("remotes") # in case we decide not to go with the container...
+          # remotes::install_cran("rmarkdown")
+          # remotes::install_deps(dependencies = TRUE)
+    container:
+      image: jhudsl/course_template
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          # get the full repo
+          fetch-depth: 0
+          # use github PAT
+          token: ${{ secrets.GH_PAT }}
+
+      # We want a fresh run of the renders each time - so first delete old html files
+      - name: Delete old *.html
+        run: Rscript -e "rmarkdown::clean_site(preview = FALSE)"
+
+       # Now we want to render all the html files from the Rmd files
+      - name: Run render html
+        id: site
+        run: Rscript -e "rmarkdown::render_site()"
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render steps
+        if: steps.site.outcome != 'success'
+        run: |
+          echo site status ${{steps.site.outcome}}
+          exit 1
+
+# Commit the rendered site files - html files and site_libs files
+      - name: Commit rendered site files
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add --force *.html
+          git add --force site_libs/*
+          git commit -m 'Render site' || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
