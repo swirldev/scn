@@ -1,5 +1,5 @@
 ---
-title: "DataTrail - 04 Plot the Data"
+title: "DataTrail - 03 Cleaning Data"
 ---
 
 ### Author
@@ -13,7 +13,7 @@ title: "DataTrail - 04 Plot the Data"
 
 ### Description
 
-This initial swirl module is a part of the DataTrail series and corresponds the introduction section: `04 Plot the Data` which can be [seen here without login](https://datatrail-jhu.github.io/DataTrail/plotting-the-data.html).
+This initial swirl module is a part of the DataTrail series and corresponds the introduction section: `03 Cleaning Data` which can be [seen here without login](https://datatrail-jhu.github.io/DataTrail/cleaning-data.html).
 
 You can run through this section on the Leanpub course and get credit for this module as well as certification [by signing up here](https://leanpub.com/c/datatrail).
 
@@ -22,12 +22,12 @@ You can run through this section on the Leanpub course and get credit for this m
 ### Installation
 
 ```r
-swirl::install_course("DataTrail_04_Plot_the_Data")
+swirl::install_course("DataTrail_03_Cleaning_Data")
 ```
 
 #### Manual Installation
 
-1. Download [this](http://swirlstats.com/scn/DataTrail_04_Plot_the_Data.swc) file.
+1. Download [this](http://swirlstats.com/scn/DataTrail_03_Cleaning_the_Data.swc) file.
 2. Run `swirl::install_course()` in the R console.
 3. Select the file you just downloaded.
 
