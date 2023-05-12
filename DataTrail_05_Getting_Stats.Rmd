@@ -1,5 +1,5 @@
 ---
-title: "DataTrail - 06 Share Results"
+title: "DataTrail - 05 Getting Stats"
 ---
 
 ### Author
@@ -9,10 +9,11 @@ title: "DataTrail - 06 Share Results"
 ### Co-Authors
 
 - Candace Savonen
+- Shannon Ellis
 
 ### Description
 
-This initial swirl module is a part of the DataTrail series and corresponds the introduction section: `06 Share Results` which can be [seen here without login](https://datatrail-jhu.github.io/DataTrail/sharing-results.html).
+This initial swirl module is a part of the DataTrail series and corresponds the introduction section: `05 Get Stats` which can be [seen here without login](https://datatrail-jhu.github.io/DataTrail/getting-statistics.html).
 
 You can run through this section on the Leanpub course and get credit for this module as well as certification [by signing up here](https://leanpub.com/c/datatrail).
 
@@ -21,12 +22,12 @@ You can run through this section on the Leanpub course and get credit for this m
 ### Installation
 
 ```r
-swirl::install_course("DataTrail_06_Share_Results")
+swirl::install_course("DataTrail_05_Getting_Stats")
 ```
 
 #### Manual Installation
 
-1. Download [this](http://swirlstats.com/scn/DataTrail_06_Share_Results.swc) file.
+1. Download [this](http://swirlstats.com/scn/DataTrail_05_Getting_Stats.swc) file.
 2. Run `swirl::install_course()` in the R console.
 3. Select the file you just downloaded.
 
