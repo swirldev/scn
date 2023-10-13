@@ -13,7 +13,7 @@
 
 <title>Swirl Courses Organized by Title</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -62,6 +62,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -82,6 +83,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -139,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -172,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -181,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -234,7 +235,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -247,7 +248,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Browse Courses
      
     <span class="caret"></span>
@@ -305,47 +306,72 @@ $(document).ready(function () {
 <div id="d" class="section level2">
 <h2>D</h2>
 <ul>
-<li><a href="DataTrail_01_Forming_Questions.html">DataTrail - 01 Forming Questions</a></li>
-<li><a href="DataTrail_02_Getting_Data.html">DataTrail - 02 Getting Data</a></li>
-<li><a href="DataTrail_03_Cleaning_the_Data.html">DataTrail - 03 Cleaning the Data</a></li>
-<li><a href="DataTrail_04_Plot_the_Data.html">DataTrail - 04 Plot the Data</a></li>
-<li><a href="DataTrail_05_Get_Stats.html">DataTrail - 05 Get Stats</a></li>
-<li><a href="DataTrail_06_Share_Results.html">DataTrail - 06 Share Results</a></li>
+<li><a href="DataTrail_01_Forming_Questions.html">DataTrail - 01 Forming
+Questions</a></li>
+<li><a href="DataTrail_02_Getting_Data.html">DataTrail - 02 Getting
+Data</a></li>
+<li><a href="DataTrail_03_Cleaning_the_Data.html">DataTrail - 03
+Cleaning the Data</a></li>
+<li><a href="DataTrail_04_Plot_the_Data.html">DataTrail - 04 Plot the
+Data</a></li>
+<li><a href="DataTrail_05_Get_Stats.html">DataTrail - 05 Get
+Stats</a></li>
+<li><a href="DataTrail_06_Share_Results.html">DataTrail - 06 Share
+Results</a></li>
 <li><a href="dsandr.html">Data Science and R</a> by Wush Wu</li>
-<li><a href="Daten_einlesen_und_kennenlernen.html">Daten einlesen und kennenlernen</a> by RLab-Team</li>
-<li><a href="Daten_visualisieren_mit_ggplot2.html">Daten visualisieren mit ggplot2</a> by RLab-Team</li>
-<li><a href="Deskriptive_Statistik_Gelaendeklimatologie.html">Deskriptive Statistik Gelaendeklimatologie</a> by RLab-Team</li>
-<li><a href="Deskriptive_Statistik_mit_bodenkundlichen_Daten.html">Deskriptive Statistik mit bodenkundlichen Daten</a> by RLab-Team</li>
-<li><a href="Deskriptive_Statistik_und_Vergleiche_meteorologischer_Zeitreihen.html">Deskriptive Statistik und Vergleiche meteorologischer Zeitreihen</a> by RLab-Team</li>
+<li><a href="Daten_einlesen_und_kennenlernen.html">Daten einlesen und
+kennenlernen</a> by RLab-Team</li>
+<li><a href="Daten_visualisieren_mit_ggplot2.html">Daten visualisieren
+mit ggplot2</a> by RLab-Team</li>
+<li><a
+href="Deskriptive_Statistik_Gelaendeklimatologie.html">Deskriptive
+Statistik Gelaendeklimatologie</a> by RLab-Team</li>
+<li><a
+href="Deskriptive_Statistik_mit_bodenkundlichen_Daten.html">Deskriptive
+Statistik mit bodenkundlichen Daten</a> by RLab-Team</li>
+<li><a
+href="Deskriptive_Statistik_und_Vergleiche_meteorologischer_Zeitreihen.html">Deskriptive
+Statistik und Vergleiche meteorologischer Zeitreihen</a> by
+RLab-Team</li>
 </ul>
 </div>
 <div id="e" class="section level2">
 <h2>E</h2>
 <ul>
-<li><a href="Einfuehrung_in_Datenaufbereitung_mit_tidyR.html">Einfuehrung in Datenaufbereitung mit tidyR</a> by RLab-Team</li>
-<li><a href="Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten.html">Einfuehrung in Datenhandling und Visualisieren von Klimadaten</a> by RLab-Team</li>
+<li><a
+href="Einfuehrung_in_Datenaufbereitung_mit_tidyR.html">Einfuehrung in
+Datenaufbereitung mit tidyR</a> by RLab-Team</li>
+<li><a
+href="Einfuehrung_in_Datenhandling_und_Visualisieren_von_Klimadaten.html">Einfuehrung
+in Datenhandling und Visualisieren von Klimadaten</a> by RLab-Team</li>
 <li><a href="eda.html">Exploratory Data Analysis</a> by Team swirl</li>
 </ul>
 </div>
 <div id="g" class="section level2">
 <h2>G</h2>
 <ul>
-<li><a href="getclean.html">Getting and Cleaning Data</a> by Team swirl</li>
+<li><a href="getclean.html">Getting and Cleaning Data</a> by Team
+swirl</li>
 <li><a href="gfc.html">Google Forms Course</a> by Sean Kross</li>
 </ul>
 </div>
 <div id="m" class="section level2">
 <h2>M</h2>
 <ul>
-<li><a href="MARSYS_Data_analysis_with_R.html">MARSYS Data analysis with R</a> by RLab-Team</li>
-<li><a href="MARSYS_Statistik_und_Programmierung_mit_R.html">MARSYS Statistik und Programmierung mit R</a> by RLab-Team</li>
+<li><a href="MARSYS_Data_analysis_with_R.html">MARSYS Data analysis with
+R</a> by RLab-Team</li>
+<li><a href="MARSYS_Statistik_und_Programmierung_mit_R.html">MARSYS
+Statistik und Programmierung mit R</a> by RLab-Team</li>
 </ul>
 </div>
 <div id="p" class="section level2">
 <h2>P</h2>
 <ul>
-<li><a href="estadistica.html">Programacion Estadistica R</a> by Ismael Fernández</li>
+<li><a href="estadistica.html">Programacion Estadistica R</a> by Ismael
+Fernández</li>
 <li><a href="programando.html">Programando en R</a> by José R Sosa</li>
+<li><a href="PSYCH.html">PSYCH</a> by Kevin R. Carriere &amp; Jason
+Kilgore</li>
 </ul>
 </div>
 <div id="q" class="section level2">
@@ -359,9 +385,12 @@ $(document).ready(function () {
 <ul>
 <li><a href="R-Grundlagen.html">R-Grundlagen</a> by RLab-Team</li>
 <li><a href="rprog.html">R Programming</a> by Team swirl</li>
-<li><a href="R_Programmieren.html">R Programmieren</a> by Stephan Weibelzahl</li>
-<li><a href="rpe.html">The R Programming Environment</a> by Roger Peng</li>
-<li><a href="regular_expressions.html">Regular Expressions</a> by Jon Calder</li>
+<li><a href="R_Programmieren.html">R Programmieren</a> by Stephan
+Weibelzahl</li>
+<li><a href="rpe.html">The R Programming Environment</a> by Roger
+Peng</li>
+<li><a href="regular_expressions.html">Regular Expressions</a> by Jon
+Calder</li>
 <li><a href="regmod.html">Regression Models</a> by Team swirl</li>
 </ul>
 </div>
@@ -374,7 +403,8 @@ $(document).ready(function () {
 <div id="v" class="section level2">
 <h2>V</h2>
 <ul>
-<li><a href="A_(very)_short_introduction_to_R.html">A (Very) Short Introduction to R</a> by Claudia Brauer</li>
+<li><a href="A_(very)_short_introduction_to_R.html">A (Very) Short
+Introduction to R</a> by Claudia Brauer</li>
 </ul>
 </div>
 

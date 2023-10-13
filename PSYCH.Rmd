@@ -2,9 +2,12 @@
 title: "PSYCH"
 ---
 
-### Authors
+### Author
 
 - Kevin R. Carriere
+
+### Co-Authors
+
 - Jason Kilgore
 
 ### Description
