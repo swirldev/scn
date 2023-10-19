@@ -18,7 +18,7 @@ output:
     - [Regular Expressions](regular_expressions.html)
 
 - Kevin R. Carriere
-    - [Psychology Statistics](Psychology_Statistics.html)
+    - [PSYCH](PSYCH.html)
 
 ## D
 

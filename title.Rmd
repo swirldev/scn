@@ -50,6 +50,7 @@ output:
 
 - [Programacion Estadistica R](estadistica.html) by Ismael Fernández
 - [Programando en R](programando.html) by José R Sosa
+- [PSYCH](PSYCH.html) by Kevin R. Carriere & Jason Kilgore
 
 ## Q
 

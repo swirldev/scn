@@ -1,0 +1,43 @@
+---
+title: "PSYCH"
+---
+
+### Author
+
+- Kevin R. Carriere
+
+### Co-Authors
+
+- Jason Kilgore
+
+### Description
+
+This course - Psychological Statistics You Can Handle (PSYCH) - is meant to be paired with an Undergraduate Research Methods or Statistics course, with notes that could serve up to early career graduate students. It is meant to help teach students basic statistics using R in an interactive framework. We take open data and replicate the results (or discuss why sometimes we cannot replicate the results). Students interact with many packages throughout this course, with the main ones being the tidyverse (dplyr, tidyr, purrr, ggplot2), rstatix, and emmeans. 
+
+This course does not cover Baysian Statistics.
+
+This course was supported through the Society for the Improvement of Psychological Science (SIPS) Grants-In-Aid to Reduce Barriers to Improving Psychological Science.
+
+### Installation
+
+```r
+swirl::install_course("PSYCH")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/PSYCH.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/krcarriere/PSYCH
+
+### Future Plans
+
+- Consider making the hints actually hint-y. Currently, all hints just give the answer.
+
+- Always looking for edits and other helpful tips - both for the course itself and the Notes.R! 
+
+- Look for collaborators! Are you interested in using this in your course? Can we A/B test to see if it helps?
