@@ -1,0 +1,368 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: Simultaneous Equations Models
+  Author: Tedros Gebregergs
+  Type: Standard
+  Organization: Mekelle University
+  Version: 2.4.5
+
+- Class: text
+  Output: In the previous lessons, we were concerned exclusively with single-equation models, i.e., models in which there was a single dependent variable Y and one or more explanatory variables, the X’s. In such models the emphasis was on estimating and/or predicting the average value of Y conditional upon the fixed values of the X variables. The cause-and-effect relationship, if any, in such models therefore ran from the X’s to the Y(i.e., unidirectional). However, there are situations where there is a two-way flow of influence among economic variables. This occurs if Y is determined by the X’s, and some of the X’s are, in turn, determined by Y. In short, there is a two-way, or simultaneous, relationship between Y and (some of) the X’s, which makes the distinction between dependent and explanatory variables of dubious value.
+
+- Class: text
+  Output: In structural form of the model,some dpendent(endogenous) are included as regressor in the right hand side of SEM. The parameters are known as structural parameter and if applied an OLS, the result is biasd and inconsistent.
+  
+
+- Class: text
+  Output: Reduced form of the SEM is an equation in which all the endogenous(dependent) variables are expressed as a function of predefined or predermined variables. The reduced parameters may be estimated by applying OLS and then the structural parameters.However, we should consider identfication problem.
+  
+
+- Class: text
+  Output: Can we always recover the parameters of the structural equations uniquely from the 'π’s'? In other words, can we always estimate the structural coefficients via the reduced form coefficients?
+
+- Class: text
+  Output:  Identification is a problem of model formulation rather than of model estimation or appraisal.
+
+- Class: text
+  Output: We say a model is identified if it is in a unique statistical form, enabling unique estimators of its parameters to be subsequently made from sample data. 
+
+- Class: text
+  Output: In econometric theory, three possible situations of identifiability can arise':' equation under consideration is exactly identified, over identified or under identified.
+
+- Class: text
+  Output: If there is a one to one correspondence between the reduced form and structural form parameters, then we have  exact identification, that is, there is a unique solution for the structural parameters in terms of the reduced form parameters.
+
+- Class: text
+  Output: If the number of reduced form parameters exceeds the number of structural parameters, then we have over identification(no unique solution).
+
+- Class: text
+  Output: If the number of reduced form parameters is less than the number of structural parameters, then we have  under identification(no solution).
+
+- Class: mult_question
+  Output: Let G be the  total number of endogenous variables in the system and let k be the  total number of variables(both endogenous and predetermined)  missing from the equation under consideration. Then the equation is exactly identified if 
+  AnswerChoices: k = G-1;k < G-1;k > G-1
+  CorrectAnswer: k = G-1
+  AnswerTests: omnitest(correctVal= 'k = G-1')
+  Hint: hint
+
+- Class: mult_question
+  Output: Let G be the  total number of endogenous variables in the system and let k be the  total number of variables(both endogenous and predetermined)  missing from the equation under consideration. Then the equation is under identified if 
+  AnswerChoices: k < G-1;k = G-1;k > G-1
+  CorrectAnswer: k < G-1
+  AnswerTests: omnitest(correctVal= 'k < G-1')
+  Hint: hint
+- Class: mult_question
+  Output: Let G be the  total number of endogenous variables in the system and let k be the  total number of variables(both endogenous and predetermined)  missing from the equation under consideration. Then the equation is over identified if 
+  AnswerChoices: k > G-1;k < G-1;k = G-1
+  CorrectAnswer: k > G-1
+  AnswerTests: omnitest(correctVal= 'k > G-1')
+  Hint: hint
+  
+- Class: text
+  Output: Indirect least squares (ILS) method is applied to exactly identified equations.
+  
+- Class: text
+  Output: There are three estimation methods of  simultaneous equations models(SEM)':' Indirect least squares (ILS) method, Instrumental variable (IV) method and Two-stage least squares (2-SLS) method.
+
+- Class: cmd_question
+  Output: we have a data on some characteristics of the wine industry in Australia, saved by 'win'. Display the first six observations.
+  CorrectAnswer: head(win)
+  AnswerTests: omnitest(correctExpr='head(win)')
+  Hint: hint
+
+- Class: text
+  Output: It is assumed that a reasonable demand-supply model for the industry would be (where all variables are in logs)':' Demand equation [Q_t=a0+a1PW_t+a2PB_t+a3Y_t+a4A_t+u_t], Supply equation[Q_t=b0+b1PW_t+b2S_t+v_t] where Q is real per capita consumption of wine, PW is the price of wine relative to CPI, PB is the price of beer relative to CPI, Y is real per capita disposable income, A is real per capita advertising expenditure, and S is index of storage costs.Here 'Q' and 'PW' are the two endogenous variables while the rest are exogenous variables.
+
+- Class: mult_question
+  Output: In the demand-supply model of the wine industry,  endogenous variable of the system are
+  AnswerChoices: Q (consumption) and PW (price of wine);Q (consumption) and PB (price of beer);PB (price of beer) and PW (price of wine);S (storage costs), PB (Price of wine),Y (Income) and A (advertising expense)
+  CorrectAnswer: Q (consumption) and PW (price of wine)
+  AnswerTests: omnitest(correctVal= 'Q (consumption) and PW (price of wine)')
+  Hint: hint
+  
+- Class: mult_question
+  Output: In the demand-supply model of the wine industry,  predermined(exogenous variables) of the system are
+  AnswerChoices: S (storage costs), PB (Price of wine),Y (Income) and A (advertising expense);PB (price of beer) and PW (price of wine);
+  CorrectAnswer: S (storage costs), PB (Price of wine),Y (Income) and A (advertising expense)
+  AnswerTests: omnitest(correctVal= 'S (storage costs), PB (Price of wine),Y (Income) and A (advertising expense)')
+  Hint: hint
+  
+- Class: mult_question
+  Output: For the estimation of the demand function we have only one instrumental variable (IV) and is
+  AnswerChoices: S (storage costs);PB (Price of wine);Y (Income);A (advertising expense)
+  CorrectAnswer: S (storage costs)
+  AnswerTests: omnitest(correctVal= 'S (storage costs)')
+  Hint: hint
+
+- Class: mult_question
+  Output: For the estimation of the Supply function, which variable can not be used as instrumental variable(IV)?  
+  AnswerChoices: S (storage costs);Y (Income);PB (Price of wine);A (advertising expense)
+  CorrectAnswer: S (storage costs)
+  AnswerTests: omnitest(correctVal= 'S (storage costs)')
+  Hint: hint
+
+- Class: text
+  Output: The supply equation is over-identified. Thus, we have three possible instrumental variables(IV) for price of wine (PW)':' price of beer(PB), advertising expense(A), income(Y). 
+
+- Class: text
+  Output: Now let's take price of beer(PB) as instrumental variable and estimate the supply function.
+
+
+- Class: cmd_question
+  Output: The first step is to regress price_wine(PW) on price_beer(PB) and storage_costs(S), and then obtain the predicted values of price_wine(PW). write the regression and save it as 'prcwine'.
+  CorrectAnswer: prcwine<-lm(price_wine~price_beer+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='prcwine<-lm(price_wine~price_beer+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now, obtain the predicted values of price_wine(PW) and save it as 'IV_pb_for_prcwine'
+  CorrectAnswer: IV_pb_for_prcwine<-fitted(prcwine)
+  AnswerTests: omnitest(correctExpr='IV_pb_for_prcwine<-fitted(prcwine)')
+  Hint: You can use fitted
+
+- Class: mult_question
+  Output: Now we are in the last step of estimation of the supply function and is
+  AnswerChoices: Regressing consumption(Q) on IV_pb_for_prcwine and S;Regressing consumption(Q) on prcwine and S
+  CorrectAnswer: Regressing consumption(Q) on IV_pb_for_prcwine and S
+  AnswerTests: omnitest(correctVal= 'Regressing consumption(Q) on IV_pb_for_prcwine and S')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now, estimate the supply function by regressing consumption(Q) on IV_bp_for_prcwine and storage_costs(S), and save as 'fit_supply'. 
+  CorrectAnswer: fit_supply<-lm(consumption~IV_pb_for_prcwine+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='fit_supply<-lm(consumption~IV_pb_for_prcwine+storage_costs,data=win)')
+  Hint: 
+
+
+- Class: cmd_question
+  Output: Instrumental variable price of beer for price of wine(IV_bp_for_prcwine) is not signficant if you run it 'summary(fit_supply)'.
+  CorrectAnswer: summary(fit_supply)
+  AnswerTests: omnitest(correctExpr='summary(fit_supply)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Let's take the second Instrumental variable advertising(A) for price_wine in the estimation of the supply function. Regress price_wine on advertising and storage_costs, and save as 'prcwine_ad'
+  CorrectAnswer: prcwine_ad<-lm(price_wine~advertising+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='prcwine_ad<-lm(price_wine~advertising+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now, obtain the predicted values of price_wine(PW) and save it as 'IV_ad_for_prcwine'
+  CorrectAnswer: IV_ad_for_prcwine<-fitted(prcwine_ad)
+  AnswerTests: omnitest(correctExpr='IV_ad_for_prcwine<-fitted(prcwine_ad)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now the last step is to estimate the supply function by regressing consumption(Q) on storage_costs and (IV_ad_for_prcwine), and save it as 'fit_supply_ad'.
+  CorrectAnswer: fit_supply_ad<-lm(consumption~storage_costs+IV_ad_for_prcwine,data=win)
+  AnswerTests: any_of_exprs('fit_supply_ad<-lm(consumption~storage_costs+IV_ad_for_prcwine,data=win)','fit_supply_ad<-lm(consumption~IV_ad_for_prcwine+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run 'summary(fit_supply_ad)'
+  CorrectAnswer: summary(fit_supply_ad)
+  AnswerTests: omnitest(correctExpr='summary(fit_supply_ad)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: The third Instrumental variable income(Y) for price_wine in the estimation of the supply function. Regress price_wine on income and storage_costs, and save as 'prcwine_in'
+  CorrectAnswer: prcwine_inc<-lm(price_wine~income+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='prcwine_inc<-lm(price_wine~income+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now, obtain the predicted values of price_wine(PW) and save it as 'IV_inc_for_prcwine'
+  CorrectAnswer: IV_inc_for_prcwine<-fitted(prcwine_inc)
+  AnswerTests: omnitest(correctExpr='IV_inc_for_prcwine<-fitted(prcwine_inc)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now the last step is to estimate the supply function by regressing consumption(Q) on storage_costs and (IV_in_for_prcwine), and save it as 'fit_supply_inc'.
+  CorrectAnswer: fit_supply_inc<-lm(consumption~storage_costs+IV_inc_for_prcwine,data=win)
+  AnswerTests: any_of_exprs('fit_supply_inc<-lm(consumption~storage_costs+IV_inc_for_prcwine,data=win)','fit_supply_inc<-lm(consumption~IV_inc_for_prcwine+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run 'summary(fit_supply_inc)'
+  CorrectAnswer: summary(fit_supply_inc)
+  AnswerTests: omnitest(correctExpr='summary(fit_supply_inc)')
+  Hint: hint
+
+- Class: figure
+  Output: The coefficient of determination for the three diffrent Instrumental variables are
+  Figure: r_sq.R
+  FigureType: new
+
+- Class: mult_question
+  Output: Which instrumental variable is better?
+  AnswerChoices: Income(Y);Price of beer(PB);Adevertising (A)
+  CorrectAnswer: Income(Y)
+  AnswerTests: omnitest(correctVal= 'Income(Y)')
+  Hint: hint
+
+- Class: text
+  Output: By comparing the estimated models using the three IV’s, it seems that income is the best IV as the resulting estimated model has the highest coefficient of determination (R_2=0.937). Since all variables are in logs, the coefficients are  elasticities. Thus, quantity supplied is responsive to both price and storage costs (both p-values < 0.001). In particular, the price elasticity of supply for wine is about 2.67.
+
+
+- Class: text
+  Output: Now, let's proceed to the second equation of the system, demand equation, using instrumental variable estimation. Lets remaind you the system equation as follow.
+
+- Class: text
+  Output: Supply equation [ Q_t=b0+b1PW_t+b2S_t+v_t ]
+
+- Class: text
+  Output: Demand equation [ Q_t=a0+a1PW_t+a2PB_t+a3Y_t+a4A_t+u_t ]
+
+
+- Class: figure
+  Output: I am remainding you variable of the wine dataset.
+  Figure: remaind_data.R
+  FigureType: new
+
+- Class: mult_question
+  Output: The demand equation is exactly-identified. Thus, we will have only one instrumental variable for PB(price of wine) in this equation and is
+  AnswerChoices: S (storage costs);Y (Income);PB (Price of wine);A (advertising expense)
+  CorrectAnswer: S (storage costs)
+  AnswerTests: omnitest(correctVal= 'S (storage costs)')
+  Hint: hint
+
+
+- Class: cmd_question
+  Output: The first step is to regress price of wine (PW) on price of beer (PB), income (Y), advertising expense (A) and storage cost (S), and then get the predicted values of PW (Predicted price of wine). Now regress and save as 'prcwine_stor'.
+  CorrectAnswer: prcwine_stor<-lm(price_wine~price_beer+income+advertising+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='prcwine_stor<-lm(price_wine~price_beer+income+advertising+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now, lets get the predicted values of price of wine(PW) and save it as 'predicted_PW'
+  CorrectAnswer: predicted_PW<-fitted(prcwine_stor)
+  AnswerTests: omnitest(correctExpr='predicted_PW<-fitted(prcwine_stor)')
+  Hint: 
+  
+
+- Class: cmd_question
+  Output: Then, the last step is to estimate the demand function by regressing consumption(Q) on Predicted price of wine (predicted_PW),price_beer, income and advertising. Let save as 'fit_dem'.
+  CorrectAnswer: fit_dem<-lm(consumption~predicted_PW+price_beer+income+advertising,data=win)
+  AnswerTests: omnitest(correctExpr='fit_dem<-lm(consumption~predicted_PW+price_beer+income+advertising,data=win)')
+  Hint: please eneter the independent variable with the given order
+
+
+- Class: cmd_question
+  Output: Run the summary of the model using summary command.
+  CorrectAnswer: summary(fit_dem)
+  AnswerTests: omnitest(correctExpr='summary(fit_dem)')
+  Hint: hint
+
+- Class: text
+  Output: We observe that the coefficient of determination is 95.5% and the F-statistic is significant. However, most of the regression coefficients are insignificant. Furthermore, all the coefficients except that of income (Y) have the wrong signs. This is probably due to multicollinearity and check it using vif function from car package.
+
+- Class: cmd_question
+  Output: Run 'vif(fit_dem)'
+  CorrectAnswer: vif(fit_dem)
+  AnswerTests: omnitest(correctExpr='vif(fit_dem)')
+  Hint: hint
+
+- Class: text
+  Output: As can be seen from the above table, the variance inflation factor (VIF) for income and advertising expense are large (far greater than 10). Thus, we have to drop one of them.From practical point of view, it seems wise to drop advertising expense and re-estimate the model.
+
+- Class: cmd_question
+  Output: Regress by droping advertising expense by 'fit_dem_1<-lm(consumption~predicted_PW+price_beer+income,data=win)'
+  CorrectAnswer: fit_dem_1<-lm(consumption~predicted_PW+price_beer+income,data=win)
+  AnswerTests: omnitest(correctExpr='fit_dem_1<-lm(consumption~predicted_PW+price_beer+income,data=win)')
+  Hint: hint
+
+- Class: figure
+  Output: The problem of MC is now solved as the VIF’s are greatly reduced (all less than 10).
+  Figure: vif_dem.R
+  FigureType: new
+
+- Class: text
+  Output: However, the coefficients of both price of wine and price of beer have wrong signs. In particular, the coefficient of price of wine not only has the wrong sign but is also significant. This is difficult to interpret. For the other variables, the conclusion we arrive at is that the demand for wine is not responsive to the price of beer, but is responsive to income. The income elasticity of demand for wine is about 2.3
+
+- Class: text
+  Output: We have seen the estimation using instrumental variables(IV) for the demand-supply equation of wine industry and now we will implement Estimation using two stages least squares (2SLS).
+  
+
+- Class: text
+  Output: In two stages least squares method, we first find the reduced form equations by regressing each endogenous variable on all exogenous variables. Then we replace all the endogenous variables in each equation(in the structural EM) by their predicted values from the reduced forms and estimate each equation by OLS.
+
+
+- Class: text
+  Output: To estimate the supply equation,first we have to get a predicted value of  the endogenous variable price of wine(PW) found in the right hand side of this equation. Therfore, to get the predicted value of price of wine(PW), we have to regress price of wine (PW) on all exogenous variables of the whole system PB, Y, A and S. We then estimate the supply function by regressing consumption (Q) on predicted value of price of wine(PB) and storage costs(S).
+
+
+- Class: cmd_question
+  Output: So, regress the price_wine on price_beer, income,advertising, and storage_costs. save the result as 'pw2sls'.
+  CorrectAnswer: pw2sls<-lm(price_wine~price_beer+income+advertising+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='pw2sls<-lm(price_wine~price_beer+income+advertising+storage_costs,data=win)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Determine the predicted value of price wine from the above and save as 'pw2sls_predicted'.
+  CorrectAnswer: pw2sls_predicted<-fitted(pw2sls)
+  AnswerTests: omnitest(correctExpr='pw2sls_predicted<-fitted(pw2sls)')
+  Hint: hint
+  
+- Class: cmd_question
+  Output: Now, estimate the supply function by regressing consumption (Q) on pw2sls_predicted(PW_t) and storage_costs(S_t). save result as 'fit2_sup'
+  CorrectAnswer: fit2_sup<-lm(consumption~pw2sls_predicted+storage_costs,data=win)
+  AnswerTests: omnitest(correctExpr='fit2_sup<-lm(consumption~pw2sls_predicted+storage_costs,data=win)')
+  Hint: hint
+
+- Class: figure
+  Output: Estimation using 2SLS method provides only one estimate per parameter for over-identified models, and hence the result is
+  Figure: two_sls.R
+  FigureType: new
+
+- Class: text
+  Output: We can see from the above table that the coefficients of both price of wine and storage cost are significant. The price elasticity of supply is about 2.6. 
+
+- Class: text
+  Output: Now let proceed to estimate the demand equation':' So, regress the consumption on all exogenous variables of the equation, i.e.,price of wine(but use pw2sls_predicted )(PW), price of beer(PB), income(Y) and advertising(A).
+
+- Class: cmd_question
+  Output: So, write to regress consumption on pw2sls_predicted, price_beer, income and advertising. save the result as 'fit2_dem'.
+  CorrectAnswer: fit2_dem<-lm(consumption~pw2sls_predicted+price_beer+income+advertising,data=win)
+  AnswerTests: omnitest(correctExpr='fit2_dem<-lm(consumption~pw2sls_predicted+price_beer+income+advertising,data=win)')
+  Hint: hint
+  
+
+- Class: cmd_question
+  Output: Run 'vif(fit2_dem)', and you will get a multicollinearity problem.
+  CorrectAnswer: vif(fit2_dem)
+  AnswerTests: omnitest(correctExpr='vif(fit2_dem)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: So, drop advertising and run 'fit2_dem_1<-lm(consumption~pw2sls_predicted+price_beer+income,data=win)'.
+  CorrectAnswer: fit2_dem_1<-lm(consumption~pw2sls_predicted+price_beer+income,data=win)
+  AnswerTests: omnitest(correctExpr='fit2_dem_1<-lm(consumption~pw2sls_predicted+price_beer+income,data=win)')
+  Hint: hint
+  
+
+- Class: cmd_question
+  Output: Run 'summary(fit2_dem_1)$coefficients'.
+  CorrectAnswer: summary(fit2_dem_1)$coefficients
+  AnswerTests: omnitest(correctExpr='summary(fit2_dem_1)$coefficients')
+  Hint: hint
+  
+- Class: cmd_question
+  Output: Remember, you have saved the instrumental variable estimator of demand equation after droping advertising as 'fit_dem_1'. Now run 'summary(fit_dem_1)$coefficients'.
+  CorrectAnswer: summary(fit_dem_1)$coefficients
+  AnswerTests: omnitest(correctExpr='summary(fit_dem_1)$coefficients')
+  Hint: hint
+  
+
+- Class: text
+  Output: Since demand equation is exactly identified, thus, the IV and 2SLS estimators of the parameters are the same
+
+- Class: text
+  Output: Congrats! You've concluded this lesson on simultaneous equation models which are truly extraordinary!
+
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor (Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint

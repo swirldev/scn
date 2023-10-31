@@ -1,0 +1,208 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: The Simple Linear Regression Model
+  Author: Tedros Gebregergs
+  Type: Standard
+  Organization: Mekelle University
+  Version: 2.4.5
+
+
+- Class: text
+  Output: This lesson is about  a two variable regression model(simple linear regression model) and uses to model the simplest economic relationship.
+  
+- Class: text
+  Output: Regression analysis is concerned with describing and evaluating the relationship  between a given variable (often called the  dependent variable) and one or more variables which are assumed to influence the given variable (often called  independentor  explanatory variables).
+           
+- Class: mult_question
+  Output: Suppose we are intersted to study the relationship between household income and expenditure on food. To study the r/ship, suppose you select a random sample of husehols from a particular population and you got a model':'Y=0.6X+120. Then ,sWhich is false?
+  AnswerChoices: Income is estimated on the basis of expenditure;On the basis of income, we can predict expenditure;If the income of a 
+                  certain household is 1500 Birr, then the estimated expenditure is 1020 Birr.;expenditure is estimated on the basis of income; expenditure is a dependent variable
+  CorrectAnswer: Income is estimated on the basis of expenditure
+  AnswerTests: omnitest(correctVal= 'Income is estimated on the basis of expenditure')
+  Hint: hint
+
+
+- Class: text
+  Output: Households with low income have a low expenditure and with high income high expenditure. This clearly shows expenditure depends on income.Y = 0.6X + 120, is a simple linear regression model beacuse we have only one independent variable(income). The coefficent of X(income) is postive and this supports the economic theory which states expenditure on economic goods dependes on income. Based on this model, the estimated expenditure for Household with income 1500 is about 1020.
+
+- Class: mult_question
+  Output: In reality,households with same income are not expected to spend equal on expenditure. This may be due to':'
+  AnswerChoices: None;some may contain teenagers but some may contain senior citizens;Diffrence in family size;diffrence in preference;diffrent geographic location causes to vary the demand and so as to vary they spend on expenditure;diffrence in preference between households towards substitute goods
+  CorrectAnswer: None
+  AnswerTests: omnitest(correctVal= 'None')
+  Hint: hint
+
+- Class: mult_question
+  Output: In reality,individual household with same income are not expected to spend equal expenditure on food.As a result the simple linear regression model is express as $Y=\alpha+\betaX+error trem(E)$. Which one is not reason for includeing the error term?
+  AnswerChoices: Simple model is not good and hence to compnset it;To include omitted relevant variables which are not included in the model; Some households may not tell us or forget thier accurate data about thier income and hence due to a measurment error;Due to sampling error;Due to wrong functional form
+  CorrectAnswer: Simple model is not good and hence to compnset it
+  AnswerTests: omnitest(correctVal= 'Simple model is not good and hence to compnset it')
+  Hint: hint
+
+- Class: text
+  Output: I have provided you a data on the percentage rate of change in electricity consumption (millions KWH)(Y) and the rate of change in the price of electricity (Birr/KWH) (X) for the years 1979–1994 by '"consm_elc"'.
+
+- Class: cmd_question
+  Output: Look at the data of electricity consumption using 'head(electricity_consumption)'
+  CorrectAnswer: head(electricity_consumption)
+  AnswerTests: any_of_exprs('head(electricity_consumption)','electricity_consumption')
+  Hint: use head()
+
+- Class: cmd_question
+  Output: From now on the data 'electricity_consumption' is saved as 'elcty' to reduce spelling error. Calculate the average  rate of change in electricity consumption for the years 1979–1994 and save it in 'y_bar' variable. 
+  CorrectAnswer: y_bar<-mean(elcty$Y)
+  AnswerTests: any_of_exprs('y_bar<-mean(elcty$Y)','y_bar<-mean(Y)')
+  Hint: The dependent variable electricity consumption is in Capital letter "Y" and R is case sensetive. 
+
+- Class: cmd_question
+  Output: Hence,the average percentage rate of change in electricity consumption is and please enter 'y_bar'.
+  CorrectAnswer: y_bar
+  AnswerTests: omnitest(correctExpr='y_bar')
+  Hint: you have already saved in the above and write the variable name where you stored.
+
+
+- Class: cmd_question
+  Output: The average rate of change of the price of the electricity(X) can be calculated and please write a command to compute it':' x_bar<-mean(elcty$X)
+  CorrectAnswer: x_bar<-mean(elcty$X)
+  AnswerTests: any_of_exprs('x_bar<-mean(elcty$X)','x_bar<-mean(X)')
+  Hint: The independent variable price is saved in Capital letter "X" and R is case sensetive.
+
+- Class: cmd_question
+  Output: The average rate of change  of the price of the electricity consumption for the years 1979 – 1994 is and please enter 'x_bar'.
+  CorrectAnswer: x_bar
+  AnswerTests: omnitest(correctExpr='x_bar')
+  Hint: you have already saved in the above and write the variable name where you stored.
+  
+- Class: cmd_question
+  Output: As shown in the module of this lesson, writting our data in deviation form its mean creates an easy formula to remeber the computing of the model parameters. Hence, please write the deviation form of the dependent variable(Y), and save it as 'y_dev'. 
+  CorrectAnswer: elcty$y_dev<-elcty$Y-y_bar
+  AnswerTests: any_of_exprs('elcty$y_dev<-elcty$Y-y_bar','y_dev<-Y-y_bar','y_dev<-Y-mean(elcty$Y)','elcty$y_dev<-Y-mean(elcty$Y)','elcty$y_dev<-Y-mean(Y)')
+  Hint: Data frame uses '$' either to create or subset variable and remember you stored the mean as 'y_bar'.
+
+- Class: cmd_question
+  Output: Write a mean deviation form of price electricity(X) and save as 'x_dev'. 
+  CorrectAnswer: elcty$x_dev<-elcty$X-x_bar
+  AnswerTests: any_of_exprs('elcty$x_dev<-elcty$X-x_bar','elcty$x_dev<-elcty$X-mean(elcty$X)','elcty$x_dev<-X-x_bar','elcty$x_dev<-X-mean(elcty$X)','x_dev<-X-mean(elcty$X)','x_dev<-X-x_bar','x_dev<-elcty$X-mean(elcty$X)','x_dev<-elcty$X-x_bar')
+  Hint: Data frame uses '$' either to create or subset variable and remember you stored the mean as 'x_bar'.
+
+
+- Class: cmd_question
+  Output: In the formula of computing beta estimotor uses a cross product of the two deviation forms in its numerator and please save it as 'xy_dev'. 
+  CorrectAnswer: elcty$xy_dev<-elcty$x_dev*elcty$y_dev
+  AnswerTests: any_of_exprs('elcty$xy_dev<-elcty$x_dev*elcty$y_dev','elcty$xy_dev<-x_dev*y_dev','xy_dev<-elcty$x_dev*elcty$y_dev','xy_dev<-x_dev*y_dev')
+  Hint: Please remeber that you have saved the deviation as 'elcty$x_dev' and 'elcty$y_dev'
+  
+- Class: cmd_question
+  Output: Now,calculate the estimated effect for a one percent drop (increase) in the growth rate of price of electricity on the electricity consumption level. Please save as 'b_hat'.
+  CorrectAnswer: b_hat<-sum(elcty$xy_dev)/sum(elcty$x_dev^2)
+  AnswerTests: any_of_exprs('b_hat<-sum(elcty$xy_dev)/sum(elcty$x_dev^2)','b_hat<-sum(xy_dev)/sum(x_dev^2)','b_hat<-sum(elcty$xy_dev)/sum(x_dev^2)','b_hat<-sum(xy_dev)/sum(elcty$x_dev^2)')
+  Hint: The least square estimator of beta is obtained as a sum of the cross product and dividing by sum sqaure X deviation.
+
+  
+- Class: cmd_question
+  Output: To estimate the intercept coefficent, we have to estimate first the slope parameter as we did. Hence, write a command which calculate it and save as "a_hat".
+  CorrectAnswer: a_hat=y_bar-b_hat*x_bar
+  AnswerTests: omnitest(correctExpr='a_hat=y_bar-b_hat*x_bar')
+  Hint: intrcept is calculated based on the mean's and slope parameter.
+  
+- Class: cmd_question
+  Output: After estimating the regression parmaters, the predicted electricity consumption(y_hat) for each rate of price change(X) is given by 'y_hat<-a_hat+b_hat*elcty$X' and please write it.
+  CorrectAnswer: y_hat<-a_hat+b_hat*elcty$X
+  AnswerTests: omnitest(correctExpr='y_hat<-a_hat+b_hat*elcty$X')
+  Hint: R is case sensetive
+
+- Class: figure
+  Output: The estimated parmaters that have been computed by your hand is therefor
+  Figure: ab_hat.R
+  FigureType: new
+  
+- Class: cmd_question
+  Output: The command for linear model is 'lm' and please check the help page how to use it by writting '?lm'.
+  CorrectAnswer: ?lm
+  AnswerTests: any_of_exprs('?lm','help(lm)')
+  Hint: use either help or ?.
+
+- Class: cmd_question
+  Output: Now run the command 'lm(Y~X,data=elcty)' and comapre the values with the above computed by your hand.
+  CorrectAnswer: lm(Y~X,data=elcty)
+  AnswerTests: omnitest(correctExpr='lm(Y~X,data=elcty)')
+  Hint: lm uses for linear model.
+  
+- Class: cmd_question
+  Output: The total variation of electricity consumption(TSS) for the years 1979 – 1994 is attributable due to variation in price and other variables not included in the mode. Now, calculate the total sum squares of deviation of the electricity consumption from its mean and save as 'TSS'.
+  CorrectAnswer: TSS<-sum(elcty$y_dev^2)
+  AnswerTests: any_of_exprs('TSS<-sum(elcty$y_dev^2)','TSS<-sum((elcty$Y-mean(elcty$Y))^2)','TSS<-sum((Y-y_bar)^2)','TSS<-sum((elcty$Y-y_bar)^2)')
+  Hint: R is case sensetive
+  
+- Class: cmd_question
+  Output: The variation due to the regression equation (explained portion) is denoted by regression (explained) sum of squares (RSS). compute and save as 'RSS'.
+  CorrectAnswer: RSS<-sum((y_hat-y_bar)^2)
+  AnswerTests: any_of_exprs('RSS<-sum((y_hat-y_bar)^2)','RSS<-b_hat^2*sum(x_dev^2)','RSS<-b_hat^2*sum((elcty$X-x_bar)^2)')
+  Hint: R is case sensetive
+
+- Class: figure
+  Output: The regression (explained) sum of squares (RSS) measures the amount of the total variability in the observed  electricity consumption that is accounted for the fitted regression equation and is about
+  Figure: rss.R
+  FigureType: new
+  
+- Class: cmd_question
+  Output: The error (residual or unexplained) sum of squares (ESS) is a measure of the dispersion of the observed electricity consumption about the regression line. compute and save as 'ESS'.
+  CorrectAnswer: ESS<-sum((elcty$Y-y_hat)^2)
+  AnswerTests: any_of_exprs('ESS<-sum((elcty$Y-y_hat)^2)','ESS<-TSS-RSS')
+  Hint: Variation in Y= Residual variation + Explained variation
+  
+- Class: figure
+  Output: Thus,the total sum of squares (TSS) is decomposed into regression (explained) sum of squares (RSS) and error (residual or unexplained) sum of squares (ESS).
+  Figure: total_table.R
+  FigureType: new
+
+
+- Class: text
+  Output: If a regression equation does a good job of describing the relationship between two variables, the explained sum of squares should constitute a large proportion of the total sum of squares. Thus, it would be of interest to determine the magnitude of this proportion by computing the ratio of the explained sum of squares to the total sum of squares. This proportion is called the sample coefficient of determination,R_squared.
+
+- Class: cmd_question
+  Output: Now compute the coefficient of determination and save as 'R_sq'
+  CorrectAnswer: R_sq<-RSS/TSS
+  AnswerTests: any_of_exprs('R_sq<-RSS/TSS', 'R_sq<-1-(ESS/TSS)','R_sq<-b_hat*sum(elcty$x_dev*elcty$y_dev)/sum(elcty$y_dev^2)','R_sq<-b_hat*sum(elcty$y_dev*elcty$x_dev)/sum(elcty$y_dev^2)')
+  Hint: 
+
+- Class: cmd_question
+  Output: Now look the coefficient of determination value
+  CorrectAnswer: R_sq
+  AnswerTests: omnitest(correctExpr='R_sq')
+  Hint: remeber the variable you saved for coefficient of determination
+
+- Class: mult_question
+  Output: Which one is false about the coefficient of determination?
+  AnswerChoices: A small value of R_sq shows that the regression equation is statistically insignificant.;A low value of R_sq indicates that even though you include a relevant variable X but its influence on Y is weak as compared to some other variables that are omitted from the regression equation;About 50% of the variation in electricity consumption is due to changes in the price of electricity.;A low value of R_sq indicates that the regression equation is misspecified;The remaining 50% of the variation in electricity consumption is not due to changes in the price of electricity, but instead due to chance and other factors not included in the model.; A low value of R_sq indicates that X is a poor explanatory variable in the sense that variation in X leaves Y unaffected.
+  CorrectAnswer: A small value of R_sq shows that the regression equation is statistically insignificant.
+  AnswerTests: omnitest(correctVal= 'A small value of R_sq shows that the regression equation is statistically insignificant.')
+  Hint: hint
+
+- Class: text
+  Output: How much is small or large for R squared value? This subjective and it varies from discipline to discipline. To conclude we have to made an objective statistical test known by F-test. The F test is designed to test the significance of all variables or a set of variables in a regression model. In the two-variable model, however, it is used to test the explanatory power of a single variable (X), and at the same time, is equivalent to the test of significance of R Square.
+
+- Class: cmd_question
+  Output: To calculate the F statistic, please we use 'F_stat<-(RSS/(2-1))/(ESS/(nrow(elcty)-2))'
+  CorrectAnswer: F_stat<-(RSS/(2-1))/(ESS/(nrow(elcty)-2))
+  AnswerTests: omnitest(correctExpr='F_stat<-(RSS/(2-1))/(ESS/(nrow(elcty)-2))')
+  Hint: hint
+
+- Class: figure
+  Output: the tabulated F-statistic for alpha=0.05 is given by the command (F_tab<-qf(p=0.05,df1=1,df2=14,lower.tail = F))
+  Figure: F_tab.R
+  FigureType: new
+
+- Class: text
+  Output: Since the calculated variance ratio exceeds the critical value, we reject the null hypothesis of no linear relationship between price and consumption of electricity at the 5% level of significance. Thus, we then conclude that R Squared is significant, that is, the linear regression model is adequate and is useful for prediction purposes.
+
+- Class: text
+  Output: Congrats! You've concluded this lesson on Simple Linear Regression Model which are truly extraordinary!
+
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor (Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint
