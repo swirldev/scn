@@ -25,10 +25,10 @@ output:
 - DataTrail team
     - [DataTrail - 01 Forming Questions](DataTrail_01_Forming_Questions.html)
     - [DataTrail - 02 Getting Data](DataTrail_02_Getting_Data.html)
-    - [DataTrail - 03 Cleaning the Data](DataTrail_03_Cleaning_the_Data.html)
-    - [DataTrail - 04 Plot the Data](DataTrail_04_Plot_the_Data.html)
-    - [DataTrail - 05 Get Stats](DataTrail_05_Get_Stats.html)
-    - [DataTrail - 06 Share Results](DataTrail_06_Share_Results.html)
+    - [DataTrail - 03 Cleaning Data](DataTrail_03_Cleaning_Data.html)
+    - [DataTrail - 04 Plotting Data](DataTrail_04_Plotting_Data.html)
+    - [DataTrail - 05 Getting Stats](DataTrail_05_Getting_Stats.html)
+    - [DataTrail - 06 Sharing Results](DataTrail_06_Sharing_Results.html)
 - David Duncan
     - [ConoceR](conocer.html)
 

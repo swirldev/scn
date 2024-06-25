@@ -22,12 +22,12 @@ You can run through this section on the Leanpub course and get credit for this m
 ### Installation
 
 ```r
-swirl::install_course("DataTrail_04_Plot_the_Data")
+swirl::install_course("DataTrail_04_Plotting_Data")
 ```
 
 #### Manual Installation
 
-1. Download [this](http://swirlstats.com/scn/DataTrail_04_Plot_the_Data.swc) file.
+1. Download [this](http://swirlstats.com/scn/DataTrail_04_Plotting_Data.swc) file.
 2. Run `swirl::install_course()` in the R console.
 3. Select the file you just downloaded.
 
