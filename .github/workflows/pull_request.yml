@@ -1,0 +1,155 @@
+# Candace Savonen Dec 2021
+
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [ main, staging ]
+
+jobs:
+
+  create-branch:
+    name: Create Branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Make branch if it doesn't exist
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          exists=$(git ls-remote https://${{ secrets.GH_PAT }}@github.com/$GITHUB_REPOSITORY $branch_name | wc -l | xargs)
+          if [[ $exists == 0 ]];then
+            echo branch doesnt exist
+            git checkout -b $branch_name || echo branch exists
+            git push --set-upstream origin $branch_name
+          else
+            echo branch does exist
+          fi
+        shell: bash
+
+########################## Make the error reports ##############################
+  spell-check:
+    name: Check spelling
+    needs: yaml-check
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: spelling
+      error_min: 3
+      gh_pat: secrets.GH_PAT
+
+  url-check:
+    name: Check URLs
+    needs: yaml-check
+    uses: jhudsl/ottr-reports/.github/workflows/report-maker.yml@main
+    with:
+      check_type: urls
+      error_min: 0
+      gh_pat: secrets.GH_PAT
+
+  render-preview:
+    name: Render preview
+    needs: yaml-check
+    runs-on: ubuntu-latest
+    container:
+      image: jhudsl/base_ottr:main
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      # Set up git checkout
+      - name: Set up git checkout
+        run: |
+          git config --local user.email "itcrtrainingnetwork@gmail.com"
+          git config --local user.name "jhudsl-robot"
+
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git fetch --all
+          git checkout $branch_name
+          git merge -s recursive --strategy-option=theirs origin/${{ github.head_ref }} --allow-unrelated-histories
+        shell: bash
+
+      # We want a fresh run of the renders each time - so first delete old html files
+      - name: Delete old *.html
+        run: Rscript -e "rmarkdown::clean_site(preview = FALSE)"
+
+       # Now we want to render all the html files from the Rmd files
+      - name: Run render html
+        id: site
+        run: Rscript -e "rmarkdown::render_site()"
+
+      # We may have html files that we want to render to add as links on the pages -these will be stored in a dir called subdir_html
+      - name: Render subdir_html
+        id: subdir_html
+        run: Rscript -e "for (i in list.files(path = './subdir_html', pattern = 'Rmd$', recursive = TRUE, full.names = TRUE)){rmarkdown::render(i)}"
+
+      # This checks on the steps before it and makes sure that they completed.
+      # If the renders didn't complete we don't want to commit the file changes
+      - name: Check on render steps
+        if: steps.site.outcome != 'success'
+        run: |
+          echo site status ${{steps.site.outcome}}
+          exit 1
+
+      # Commit the rendered website files
+      - name: Commit rendered website files to preview branch
+        id: commit
+        run: |
+          branch_name='preview-${{ github.event.pull_request.number }}'
+          git diff origin/main -- '*.html' >/dev/null && changes=true || changes=false
+          echo ::set-output name=changes::$changes
+          git add . --force
+          git commit -m 'Render preview' || echo "No changes to commit"
+          git pull --set-upstream origin $branch_name --allow-unrelated-histories --strategy-option=ours
+          git push --force || echo "No changes to commit"
+        shell: bash
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: latest commit
+
+      - name: Build components of the comment
+        id: build-components
+        run: |
+          course_name=$(head -n 1 _website.yml | cut -d'"' -f 2| tr " " "-")
+          website_link=$(echo "https://htmlpreview.github.io/?https://raw.githubusercontent.com/$GITHUB_REPOSITORY/preview-${{ github.event.pull_request.number }}/index.html")
+          echo ::set-output name=website_link::$website_link
+          echo ::set-output name=time::$(date +'%Y-%m-%d')
+          echo ::set-output name=commit_id::$GITHUB_SHA
+          echo ${{steps.commit.outputs.changes}}
+
+      - name: Create or update comment
+        if: steps.commit.outputs.changes == 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Re-rendered previews from the latest commit: See [preview of website here](${{ steps.build-components.outputs.website_link }})
+
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
+
+      - name: No comment if no changes
+        if: steps.commit.outputs.changes == 'false'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The latest commit did not produce rendering changes.
+
+            _Updated at ${{ steps.build-components.outputs.time }} with changes from ${{ steps.build-components.outputs.commit_id }}_
+          edit-mode: replace
