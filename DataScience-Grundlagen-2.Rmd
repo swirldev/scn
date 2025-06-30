@@ -1,0 +1,30 @@
+---
+title: "Data Science Grundlagen-2 (German)"
+author: "Bernd Heesen"
+---
+
+### Author
+
+- Bernd Heesen
+
+### Description
+
+Use R for descriptive statistics as part of the overall course "Datascience and Statistics" including the tutorials (DataScience-Grundlagen 1-3, DataScience-Statistik 1-2 and DataScience-Programmierung), which was developed by Professor Heesen at the University of Applied Sciences Ansbach (https://www.hs-ansbach.de)
+Dieses Tutorial beinhaltet die Lektionen Variablen, Datumsvariablen, Dataframes und Grafiken.
+
+### Installation
+
+```r
+swirl::install_course("DataScience-Grundlagen-2")
+```
+
+#### Manual Installation
+
+1. Download [this](http://swirlstats.com/scn/DataScience-Grundlagen-2.swc) file.
+2. Run `swirl::install_course()` in the R console.
+3. Select the file you just downloaded.
+
+### Website
+
+- https://github.com/swirldev/scn
+- https://github.com/bheesen/scn
