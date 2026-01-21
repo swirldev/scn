@@ -1,0 +1,143 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: Multicollinearity
+  Author: Tedros Gebregergs
+  Type: Standard
+  Organization: Mekelle University
+  Version: 2.4.5
+
+
+- Class: text
+  Output: In the construction of an econometric model, it may happen that two or more variables giving rise to the same piece of information are included, that is, we may have redundant information or unnecessarily included related variables. This is what we call a  multicollinearity(MC) problem.
+
+- Class: text
+  Output: One of the assumptions of the CLRM is that there is no exact linear relationship exists between any of the explanatory variables. When this assumption is violated, we speak of perfect MC.
+
+- Class: text
+  Output: If all explanatory variables are uncorrelated with each other, we speak of  absence of MC.
+
+- Class: text
+  Output: These are two extreme cases and rarely exist in practice. Of particular interest are cases in between moderate to high degree of MC.Such kind of MC is so common in macroeconomic time series data (such as GNP, money supply, income, etc) since economic variables tend to move together over time.
+
+- Class: mult_question
+  Output: Which one is incorrect about the consequence of perfect MC?
+  AnswerChoices: None;Non-identifiability of the regression coefficient vector B.;Two different models become observationally equivalent.;Regression coefficients can not be estimated(indeterminate).
+  CorrectAnswer: None
+  AnswerTests: omnitest(correctVal= 'None')
+  Hint: hint
+
+- Class: mult_question
+  Output: Which one is incorrect about consequences of a high degree of MC (moderate to strong) but not perfect MC? 
+  AnswerChoices: The correlation coefficient between variables is one;Low probability rejecting the null hypothesis of zero coefficient (using the t-test) when in fact the coefficient is significantly different from zero.;The correlation coefficient between variables tends to about one.; Ordinary least squares (OLS) estimators are unbiased.;Variance of OLS coefficient estimates will be inflated.;
+  CorrectAnswer: The correlation coefficient between variables is one
+  AnswerTests: omnitest(correctVal= 'The correlation coefficient between variables is one')
+  Hint: hint
+
+- Class: mult_question
+  Output: Under perfect MC, the OLS estimates and their standard errors may be quite sensitive to small changes in the data.
+  AnswerChoices: FALSE;TRUE
+  CorrectAnswer: FALSE
+  AnswerTests: omnitest(correctVal= 'FALSE')
+  Hint: hint
+
+- Class: mult_question
+  Output: High pair-wise correlations among regressor indicates presence of strong MC and low pair-wise correlation indicates week MC.
+  AnswerChoices: FALSE;TRUE
+  CorrectAnswer: FALSE
+  AnswerTests: omnitest(correctVal= 'FALSE')
+  Hint: hint
+
+- Class: text
+  Output: Multicollinearity almost always exists in most applications. So the question is not whether it is present or not; it is a question of degree! Also MC is not a statistical problem; it is a data (sample) problem. Therefore, we do not "test for MC"; but measure its degree in any particular sample (using some rules of thumb).
+
+- Class: mult_question
+  Output: Which one is the method of detecting a MC
+  AnswerChoices: All;High R squared but few (or no) significant t-ratios.;High pair-wise correlations among regressor.;High Variance inflation factor(VIF).
+  CorrectAnswer: All
+  AnswerTests: omnitest(correctVal= 'All')
+  Hint: hint
+
+- Class: text
+  Output: As a rule of thumb':' MC is troublesome if any of the coefficient of determination for regressing one independent variable on the other remainging independent variable(R_j_sq) exceeds the overall R square(the coefficient of determination of the regression equation. If VIF(Beta_hat_j ) exceeds 10, then Beta_hat_j is poorly estimated because of MC (or the jth regressor variable (X_j) is responsible for MC)
+
+- Class: cmd_question
+  Output: You have data about imports for the year 1949–1967, then to model factors that affect the import please look the data saved by 'import'.
+  CorrectAnswer: import
+  AnswerTests: omnitest(correctExpr='import')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Regress imports on GDP, stock formation and consumption. save your result as 'fit'
+  CorrectAnswer: fit<-lm(imports~GDP+stock.formation+consumption,data=import)
+  AnswerTests: omnitest(correctExpr='fit<-lm(imports~GDP+stock.formation+consumption,data=import)')
+  Hint: use lm() and do not forget to include data name. Use names(import) to look variable names
+
+- Class: cmd_question
+  Output: Now run 'summary(fit)'
+  CorrectAnswer: summary(fit)
+  AnswerTests: omnitest(correctExpr='summary(fit)')
+  Hint: hint
+
+
+- Class: text
+  Output: The value of R square is close to 1, meaning GDP, stock formation and consumption together explain 97.5% of the variation in imports. Also the F-statistic is significant at the 1% level of significance. Thus, the linear regression model is adequate. However, all of the estimated regression coefficients (save the constant term) are insignificant at the conventional levels of significance. This is an indication thatthe standard errors are inflated due to MC. Since an increase in GDP is often associated with an increase in consumption, they have a tendency to grow up together over time leading to MC.
+
+
+- Class: cmd_question
+  Output: Check thier correlation for presence of MC problem?
+  CorrectAnswer: cor(import)
+  AnswerTests: any_of_exprs('cor(import)','cor(import[,-1])','cor(import[,-c(1,2)])','cor(import, method = "spearman")')
+  Hint: use cor()
+
+- Class: text
+  Output: The coefficient of correlation between GDP and consumption is 0.999. Thus, it seems that the problem of MC is due to the joint appearance of these two variables.
+
+
+- Class: cmd_question
+  Output: Now I have provided you as 'y=imports, x2=GDP, x3=stock.formation, x4=consumption'. To chech the presence of MC using VIF, now regress x2(GDP) on x3(stock.formation) and x4(consumption). save as 'fit_2'.
+  CorrectAnswer: fit_2<-lm(x2~x3+x4)
+  AnswerTests: any_of_exprs('fit_2<-lm(x2~x3+x4)','fit_2<-lm(GDP~stock.formation+consumption,data=import)')
+  Hint: x's are saved as vectors.
+
+- Class: cmd_question
+  Output: The coefficient of determination of the above  is given by and please enter the 'summary(fit_2)$r.squared'
+  CorrectAnswer: summary(fit_2)$r.squared
+  AnswerTests: omnitest(correctExpr='summary(fit_2)$r.squared')
+  Hint: hint
+
+- Class: cmd_question
+  Output: The Variance inflation factor(VIF) is given by one over (1-R_j_square) and compute it directly with out saving.
+  CorrectAnswer: 1/(1-summary(fit_2)$r.squared)
+  AnswerTests: omnitest(correctExpr='1/(1-summary(fit_2)$r.squared)')
+  Hint: Use summary(fit_2)$r.squared
+
+- Class: figure
+  Output: The coefficient of determination of the auxiliary regression of GDP(x2) on stock formation(x3) and consumption is higher than 97.5%. Which is
+  Figure: r_2.R
+  FigureType: new
+
+- Class: figure
+  Output: And the VIF of GDP coeffiecnt exceeds 10. we can conclude that the coefficient of GDP is poorly estimated because of MC (or that GDP is responsible for MC).
+  Figure: vif_2.R
+  FigureType: new
+
+- Class: cmd_question
+  Output: you can also use vif function of 'fit' from car package. write vif(fit)
+  CorrectAnswer: vif(fit)
+  AnswerTests: omnitest(correctExpr='vif(fit)')
+  Hint: Use vif(of fit)
+
+- Class: text
+  Output: To circumvent the problem of MC, some of the possibilities are':' Including additional observations, Dropping a variable, Use a biased ordinary ridge regression (ORR) 
+  
+- Class: text
+  Output: Congrats! You've concluded this lesson on multicollinearity which are truly extraordinary!
+
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor (Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint
+

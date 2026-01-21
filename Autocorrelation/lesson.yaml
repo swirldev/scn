@@ -1,0 +1,194 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: Autocorrelation
+  Author: Tedros Gebregergs
+  Type: Standard
+  Organization: Mekelle University
+  Version: 2.4.5
+
+- Class: text
+  Output: The assumption of non-autocorrelation is more frequently violated in case of relations estimated from time series data. For instance, in a study of the relationship between output and inputs of a firm or industry from monthly observations, non-autocorrelation of the disturbance implies that the effect of machine breakdown is strictly temporary in the sense that only the current month’s output is affected. But in practice, the effect of a machine breakdown in one month may affect current month’s output as well as the output of subsequent months. 
+
+- Class: mult_question
+  Output: Under the presence of autocorrelation and assume that the errors (disturbances) follow the  first-order autoregressive scheme(AR(1)).which one is false?
+  AnswerChoices: cov(E_t,E_(t-2))=roha*Var(E_t);cov(E_t,E_(t-1)) is diffrent from zero;Var(E_t)=Var(u_t)/(1-coeffient of correlation(roha)),where u_t sattisfies all assumption of CLRM;cov(E_t,E_(t-2))=roha^2*Var(E_(t-2))
+  CorrectAnswer: cov(E_t,E_(t-2))=roha*Var(E_t)
+  AnswerTests: omnitest(correctVal= 'cov(E_t,E_(t-2))=roha*Var(E_t)')
+  Hint: hint
+
+- Class: mult_question
+  Output: If the error terms are correlated(postively)and if we apply OLS, then which one is false about the properties of the estimators?
+  AnswerChoices: The variances of regression coefficients will be  over-estimated;OLS estimator are unbiased;The variances of regression coefficients will be  under-estimated;High values of Coefficent of determination and inflated t-statistic;The estimated variances of the OLS estimators are biased,and as a consequence, the conventional confidence intervals and tests of significance are not valid
+  CorrectAnswer: The variances of regression coefficients will be  over-estimated
+  AnswerTests: omnitest(correctVal= 'The variances of regression coefficients will be  over-estimated')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Here is a data  on investment and value of outstanding shares for the years 1935-1953. The data is saved in 'auto' and look the first six observations using head().
+  CorrectAnswer: head(auto)
+  AnswerTests: omnitest(correctExpr='head(auto)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Regress investment('invest') on value of shares('vsh') and store in 'fit0'.
+  CorrectAnswer: fit0<-lm(invest~vsh,data=auto)
+  AnswerTests: omnitest(correctExpr='fit0<-lm(invest~vsh,data=auto)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Look the summary of 'fit0'. The F-statistic is significant at the 1% level. This indicates that the model is adequate.
+  CorrectAnswer: summary(fit0)
+  AnswerTests: omnitest(correctExpr='summary(fit0)')
+  Hint: hint
+
+- Class: figure
+  Output: Although the model passes the ANOVA test, we plot the estimated residuals against time and look for some model misspecifications. The graph (scatter plot) of the estimated disturbances (residuals) is shown here. We can see a clustering of neighbouring residuals on one or the other side of the line  e_hat=0. This might be a sign that the errors are autocorrelated. However, we do not make a final judgment until we apply formal tests of autocorrelation.
+  Figure: plot0.R
+  FigureType: new
+
+
+- Class: cmd_question
+  Output:  One of the test for presence of autocorrelation in the error term is Breusch-Godfrey (BG) test. To apply BG test, first apply OLS and obtain the residuals, and then regress E_hat_t on X_t, E_hat_(t-1),...,E_hat_(t-p) and obtain the cooeffiecnt of detrmination(R_sq). Hence,Lets prepare our data for BG test and save the residuals of OLS in 'ei_hat' variable using  resid() command.
+  CorrectAnswer: ei_hat<-resid(fit0)
+  AnswerTests: omnitest(correctExpr='ei_hat<-resid(fit0)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Assuming AR(1) process of the error term, run the following auxiliary regression 'ei_hat_t=alpha+beta*X_t+roha_1*ei_hat_(t-1)+v_t' and save it in 'fit0_ei' variable, to determine the coefficent of detrmination and so as the BG test statistic.
+  CorrectAnswer: fit0_ei<-lm(ei_hat[-1]~auto$vsh[-1]+ei_hat[-19])
+  AnswerTests: any_of_exprs('fit0_ei<-lm(ei_hat[-1]~auto$vsh[-1]+ei_hat[-19])','fit0_ei<-lm(ei_hat[-1]~auto$vsh[-1]+ei_hat[-length(ei_hat)])')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run the summary () of 'fit0_ei' object. summary(fit0_ei)
+  CorrectAnswer: summary(fit0_ei)
+  AnswerTests: omnitest(correctExpr='summary(fit0_ei)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: The BG test statistic is'given by:(T-p)*R_sq', where T=19, and using the coefficent of detrmination from the above summary result compute the test statistic.
+  CorrectAnswer: 18*0.5083
+  AnswerTests: any_of_exprs('18*0.5083','(19-1)*0.5083','(T-p)*0.5083')
+  Hint: the error process follows autoregressive order one, AR(1), for p.
+
+
+- Class: cmd_question
+  Output: Breusch-Godfrey test follows Chi-square distribution with p degrees of freedom.Compute the tabulated value using command 'qchisq'.
+  CorrectAnswer: qchisq(0.05,1,lower.tail=FALSE)
+  AnswerTests: any_of_exprs('qchisq(0.05,1,lower.tail=FALSE)', 'qchisq(0.05,1,lower.tail=F)')
+  Hint: hint
+
+- Class: text
+  Output: As we saw, the calculated test statistic exceeds the critical value, we reject the null hypothesis of no autocorrelation.
+
+- Class: text
+  Output: The other tests of AC are partial function(PACF) and DW-----.
+
+- Class: text
+  Output: All tests showed that presence of autocorrelation, and hence we need to apply Cochrane-Orcutt trasformation. First we have to obtain an estimate roha_hat of roha, that is, regress the OLS residuals e_hat_t on e_hat_(t-1) without constant term. 
+
+- Class: cmd_question
+  Output: Remember, you have a vector of residuals in 'ei_hat' variable. Using ei_hat,now regress e_hat_t on e_hat_(t-1) and save it in 'fit0_roha'variable.
+  CorrectAnswer: fit0_roha<-lm(ei_hat[-1]~ei_hat[-length(ei_hat)]-1)
+  AnswerTests: any_of_exprs('fit0_roha<-lm(ei_hat[-1]~ei_hat[-length(ei_hat)]-1)','fit0_roha<-lm(ei_hat[-1]~ei_hat[-19]-1)')
+  Hint: use subsetting of -1 and -length(ei_hat), and without constant term
+
+- Class: cmd_question
+  Output: Run summary( fit0_roha)
+  CorrectAnswer: summary( fit0_roha)
+  AnswerTests: omnitest(correctExpr='summary( fit0_roha)')
+  Hint: hint
+
+- Class: mult_question
+  Output: The estimated correlation coeffiecnt(roha) is
+  AnswerChoices: 0.8049;0.8449;0.9408
+  CorrectAnswer: 0.8049
+  AnswerTests: omnitest(correctVal= '0.8049')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Using roha=0.8049, create the trasformed investment variable y_transf=y_t-roha*Y_(t-1) where y='auto$invest'.
+  CorrectAnswer: y_transf<-auto$invest[-1]-0.8049*auto$invest[-length(auto$invest)]
+  AnswerTests: any_of_exprs('y_transf<-auto$invest[-1]-0.8049*auto$invest[-length(auto$invest)]','y_transf<-auto$invest[-1]-0.8049*auto$invest[-19]')
+  Hint: Use auto$invest[-length(auto$invest)] to subset
+
+- Class: cmd_question
+  Output: Similarly, create the trasformed valueshare independent variable, x_transf=x_t-roha*x_(t-1), where x='auto$vsh'.
+  CorrectAnswer: x_transf<- auto$vsh[-1]-0.8049*auto$vsh[-length(auto$vsh)]
+  AnswerTests: any_of_exprs('x_transf<- auto$vsh[-1]-0.8049*auto$vsh[-length(auto$vsh)]','x_transf<- auto$vsh[-1]-0.8049*auto$vsh[-19]')
+  Hint: hint
+
+- Class: cmd_question
+  Output: in the Cochrane-Orcutt transformation from your slide, it also needs alpha_astrix. So, create 'alpha_transf <- 1-roha', using rep(1-roha,18).
+  CorrectAnswer: alpha_transf <- rep(1-roha,18)
+  AnswerTests: any_of_exprs('alpha_transf <- rep(1-roha,18)', 'alpha_transf <- rep(1-0.8049,18)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now run OLS using these previously transformed data. save your result in 'fit_no_ac'.
+  CorrectAnswer: fit_no_ac<-lm(y_transf~x_transf)
+  AnswerTests: omnitest(correctExpr='fit_no_ac<-lm(y_transf~ x_transf)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run summary of 'fit_no_ac'. summary(fit_no_ac)
+  CorrectAnswer: summary(fit_no_ac)
+  AnswerTests: omnitest(correctExpr='summary(fit_no_ac)')
+  Hint: hint
+
+- Class: figure
+  Output: After transforming, the scatterplot of residuals versus year does not show aclear trend but we need a formal test.
+  Figure: plot_no_ac.R
+  FigureType: new
+
+- Class: cmd_question
+  Output:  Lets check using Breusch-Godfrey (BG) test if it supports the graph. First save the residuals of fit_no_ac in 'ei_hat_no_ac'.
+  CorrectAnswer: ei_hat_no_ac<-resid(fit_no_ac)
+  AnswerTests: omnitest(correctExpr='ei_hat_no_ac<-resid(fit_no_ac)')
+  Hint: hint
+
+
+- Class: cmd_question
+  Output: Assuming AR(1) , run  'ei_hat_no_ac_t=alpha+beta*x_transf_t+roha_1*ei_hat_no_ac_(t-1)+v_t' and save it in 'fit_check_noac' variable, to determine the coefficent of detrmination.
+  CorrectAnswer: fit_check_noac<-lm(ei_hat_no_ac[-1]~x_transf[-1]+ei_hat_no_ac[-18])
+  AnswerTests: omnitest(correctExpr='fit_check_noac<-lm(ei_hat_no_ac[-1]~x_transf[-1]+ei_hat_no_ac[-18])')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run a summary on 'fit_check_noac'  to get the coefficent of determination, so as to calculate the BG test.
+  CorrectAnswer: summary(fit_check_noac)
+  AnswerTests: omnitest(correctExpr='summary(fit_check_noac)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: The tabulated chi-square value is 3.841 and should be greater than the calculated BG test statistic to not reject the null hypothesis of no autocorrelation. Now calculate using (18-1)*R_squred', where T=18,p=1, and R_squred= the coefficent of detrmination from the above summary result.
+  CorrectAnswer: 17*0.1911
+  AnswerTests: any_of_exprs('17*0.1911','(18-1)*0.1911')
+  Hint: the error process follows autoregressive order one, AR(1), for p.
+
+- Class: mult_question
+  Output: which one is true about the coefficent of detrmination(R_sq) in applying BG test.
+  AnswerChoices: R_sq is 0.1911 in the non-autocorrelated error and 0.8049 in the correlated;R_sq in the non-autocorrelated error term is greater than in the autocorrelated error term;R_sq close to zero implies the lagged residuals are not explaining current residuals 
+  CorrectAnswer: R_sq is 0.1911 in the non-autocorrelated error and 0.8049 in the correlated
+  AnswerTests: omnitest(correctVal= 'R_sq is 0.1911 in the non-autocorrelated error and 0.8049 in the correlated')
+  Hint: hint
+
+
+- Class: text
+  Output: hence the test confirmes the above graph of no serial autocorrelation.
+
+- Class: text
+  Output: Congrats! You've concluded this lesson on autocorrelation which are truly extraordinary!
+  
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor(Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint
+
+
+
+
+

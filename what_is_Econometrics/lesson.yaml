@@ -1,0 +1,70 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: what is Econometrics
+  Author: your name goes here
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.5
+
+- Class: text
+  Output: This course is about econometrics designed for under graduate statistics students. Prerequisite of this course is a basic regression anlysis. Here, the course is stuructured more of its emperical problem but its theortical part is expected to be covered in the face to face class. As the course is designed for undergraduate, students should make a practice of solving numeric problems by thier hand. And, we belive that every steps that can be done by hand is possible in R language. For that reason, it is designed in a way that does not use much of packages, rather it encourages to write a code for each step of the process.
+
+- Class: text
+  Output: econometrics is the application of statistical and mathematical methods to the analysis of economic data with a purpose of giving empirical content to economic theories and verifying or refuting them.
+    
+- Class: text
+  Output: it is concerned with the use of statistical methods to attach numerical values to the parameters of economic models and also with the use of these models for prediction.
+
+- Class: text
+  Output: Econometrics may be defined as the social science in which the tools of economic theory, mathematics, and statistical inference are applied to the analysis of economic phenomena.
+
+- Class: text
+  Output: Econometrics may be defined as the quantitative analysis of actual economic phenomena based on the concurrent development of theory and observation, related by appropriate methods of inferenc.
+
+- Class: mult_question
+  Output: If an econometrician wishes to enter a business world and assume the employer does not understand economics but want to know the answer to the question, What can you do for me?. A satisfactory response by econometrician would be
+  AnswerChoices: All;I can predict the sales of your product;I can estimate the effect on your sales if your competition lowers its price by $1 per unit;I can test whether your new ad campaign is actually increasing your sales
+  CorrectAnswer: All
+  AnswerTests: omnitest(correctVal= 'All')
+  Hint: hint
+
+- Class: text
+  Output: These answers are music to an employers ears, because they reflect your ability to think like an economist and to analyze economic data.
+  
+- Class: text
+  Output: Literally speaking, the word ‘econometrics’ means measurement in economics. Although measurement is an important part of econometrics, the scope of econometrics is much broader as shown in the above defintion. Before any statistical analysis with economic data is performed, one needs a clear mathematical formulation of the relevant economic theory. For example, saying that the demand curve is downward sloping is not enough. We have to write the statement in a mathematical form.
+
+- Class: text
+  Output: The first task an econometrician faces is that of formulating an econometric model. A model is a simplified representation of a real world process. For instance, ‘the demand for oranges depends on the price of oranges’ is a simplified representation since there are a host of other variables that one can think of that determine the demand for oranges.
+  
+- Class: mult_question
+  Output: Which one is not correct about simple model?
+  AnswerChoices: Real world is simple to understand and needs a simple model;Easier to understand;Easier to test emperical with sample data;Easier to communicate
+  CorrectAnswer: Real world is simple to understand and needs a simple model
+  AnswerTests: omnitest(correctVal= 'Real world is simple to understand and needs a simple model')
+  Hint: hint
+
+- Class: mult_question
+  Output: An economic model is a set of assumptions that approximately describes the behaviour of an economy (or a sector of an economy).
+  AnswerChoices: True;False
+  CorrectAnswer: True
+  AnswerTests: omnitest(correctVal= 'True')
+  Hint: hint
+
+- Class: mult_question
+  Output: The aims of econometrics are
+  AnswerChoices: All;Estimation and testing of  models with observed data (inference aspect);Formulation of econometric models, that is, formulation of economic models in an empirically testable form (specification aspect);Use of models for prediction and policy purpose
+  CorrectAnswer: All
+  AnswerTests: omnitest(correctVal= 'All')
+  Hint: hint
+
+- Class: text
+  Output: Congrats! You've concluded this lesson on what is econometrics which are truly extraordinary!
+
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor (Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint

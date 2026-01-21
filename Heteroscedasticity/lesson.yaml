@@ -1,0 +1,263 @@
+- Class: meta
+  Course: Econometrics
+  Lesson: Heteroscedasticity
+  Author: Tedros Gebregergs
+  Type: Standard
+  Organization: Mekelle University
+  Version: 2.4.5
+
+- Class: text
+  Output: When the assumption of constant error variance is violated, we say there is a heteroscedasticity problem. In this lesson you will see  the consequence of heteroscedasticity problem in OLS estimation, the diffrent types of tests to detect the heteroscedasticity problem, and finally how to overcame the probelm in the model.
+
+- Class: mult_question
+  Output: Consider the case of data on income and expenditure of individual families. Which one is true? Do you expect that a less variation in consumption for low income families than for a high income families?
+  AnswerChoices:  Less variation in consumption for low income families than for a high income families;High variation in consumption for low income families than for a high income families
+  CorrectAnswer: Less variation in consumption for low income families than for a high income families
+  AnswerTests: omnitest(correctVal= 'Less variation in consumption for low income families than for a high income families')
+  Hint: hint
+
+- Class: text
+  Output: At low levels of income, the average level of consumption is low and the variation around this level is restricted; consumption can not fall too far below the average level because this might mean starvation, and it can not rise too far above the average level because the asset does not allow it. These constraints are likely to be less binding at higher income levels.Hence, high consumption variation is expected among high income families. 
+  
+- Class: cmd_question
+  Output: Consider the data on consumption expenditure (Y) and income (X) for 20 households (both in thousands of Dollars) in the data set "consmp". Run OLS and store the result in 'fit0<-lm(expen~income,consmp)'.
+  CorrectAnswer: fit0 <-lm(expen ~ income, consmp)
+  AnswerTests: creates_lm_model('fit0 <-lm(expen ~ income, consmp)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Look at the summary result. write 'summary(fit0)'
+  CorrectAnswer: summary(fit0)
+  AnswerTests: omnitest(correctExpr='summary(fit0)')
+  Hint: hint
+
+- Class: figure
+  Output: A plot of the residuals against the values of the explanatory variable checks for presence of Heteroscedasticity using plot(consmp$expen,fit0$resid).look for any pattern b/n Xi and the residuals.
+  Figure: plot0.R
+  FigureType: new
+
+- Class: text
+  Output: It can clearly be seen that the scatter of the residuals (i.e., the variance of the residuals) increases with Xi. This is an indication of a heteroscedasticity problem. However, we should not come to a conclusion until we apply formal tests of the hypothesis of homoscedasticity
+
+
+- Class: text
+  Output: one of the test for heteroscedasticity is Goldfeld-Quandt test. To apply the test, the observations should be orderd first based on the absolute magnitude of the explanatory variable X and then devide the observation into three parts.  Let n1=observations in the first part, p observations in the middle part, and n2 observations in the second part (n1+p+n2=n). Usually P is taken to be one-sixth of n.
+
+- Class: text
+  Output: Its objective is to test whetehr the variance of the first part observations and the last observation is similar or not, and this will be done based on the variance of residuals. Hence, run a separte regression on the first n1 and  last n2 observations.
+
+- Class: cmd_question
+  Output: I have placed for you a sorted data based on income(xi) and stored in 'consmp_o' object. let's view it using 'head' or 'View' command.
+  CorrectAnswer: head(consmp_o)
+  AnswerTests: omnitest(correctExpr='head(consmp_o)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Run OLS on the first eight obervations of 'consmp_o' data and store in a variable'fit_qfq_n1'. That is to regress expenditure on income, 'fit_gfq_n1<-lm(expen~income,consmp_o[1:8,])'.
+  CorrectAnswer: fit_gfq_n1<-lm(expen~income,consmp_o[1:8,])
+  AnswerTests: omnitest(correctExpr='fit_gfq_n1<-lm(expen~income,consmp_o[1:8,])')
+  Hint: hint
+
+
+- Class: cmd_question
+  Output: Similarly, run regression on the last eight obseravtion of 'consmp_o'(using '13:20') and store it in a variable 'fit_qfq_n2'.
+  CorrectAnswer: fit_gfq_n2<-lm(expen~income,consmp_o[13:20,])
+  AnswerTests: omnitest(correctExpr='fit_gfq_n2<-lm(expen~income,consmp_o[13:20,])')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Remeber, the Goldfeld-Quandt test statistic is given by 'F_cal=S2_sq/s1_sq', where s1 and s2 are variance of the residuals of the two data parts.write a command that calculates variance of the residuals from'fit_qfq_n1' using resid() function and store it in 's1'.
+  CorrectAnswer: s1<-sum(resid(fit_gfq_n1)^2)/(8-2)
+  AnswerTests: omnitest(correctExpr='s1<-sum(resid(fit_gfq_n1)^2)/(8-2)')
+  Hint: using sum function and denomanitor of 8-2.
+
+- Class: cmd_question
+  Output: write a command that calculates variance of the residuals from'fit_qfq_n2' using resid() function and store it in 's2'.
+  CorrectAnswer: s2<-sum(resid(fit_gfq_n2)^2)/(8-2)
+  AnswerTests: omnitest(correctExpr='s2<-sum(resid(fit_gfq_n2)^2)/(8-2)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Calculate the test statistic of Goldfeld-Quandt test based on the previous vriances of the residuals and store it in 'F_cal'.
+  CorrectAnswer: F_cal<-s2/s1
+  AnswerTests: omnitest(correctExpr='F_cal<-s2/s1')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Already we have calculated the Goldfeld-Quandt test statistic is distributed as F(n1-2,n2-2) and compute the critical F-value at alpha=5% level of signficance. use 'F_tab<-qf(0.05,8-2,8-2, lower.tail=FALSE)'.
+  CorrectAnswer: F_tab<-qf(0.05,8-2,8-2, lower.tail=FALSE)
+  AnswerTests: omnitest(correctExpr='F_tab<-qf(0.05,8-2,8-2, lower.tail=FALSE)')
+  Hint: hint
+  
+
+- Class: figure
+  Output: Since F_calculated is greater than the tabulated value, we reject the null hypothes is of homoscedasticity at the 5% significance level.
+  Figure: F_gfq.R
+  FigureType: new
+
+- Class: text
+  Output: The other test for presence of heteroscedasticity is 'Breusch - Pagan test'. It involoves applying OLS to y=(e_hat_sq/sigma_hat_sq)=Gamma0+Gamma1*X1i+Gamma2*X2i+...+ui and calculating the regression sum of squares (RSS). The test statistic is':'chi_squred=RSS/2.
+
+- Class: cmd_question
+  Output: Let's check presence of heteroscedasticity in the consmpution data. In the step of 'Breusch - Pagan test', the first step is to create a varaiable of response where in this case is the square of estimated residual over the estimated variance of stanadrd error.Write a command that creates the dependent variable of this test and stor it in 'res_bp','res_bp<-resid(fit0)^2/(deviance(fit0)/(20-2))'.
+  CorrectAnswer: res_bp<-resid(fit0)^2/(deviance(fit0)/(20-2))
+  AnswerTests: omnitest(correctExpr='res_bp<-resid(fit0)^2/(deviance(fit0)/(20-2))')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Inorder to calculate the regression sum of squares, first we have to run a regression by taking the 'res_bp' as response variable and store it in 'fit_bp'. That is , 'fit_bp<-lm(res_bp~consmp$income)'. 
+  CorrectAnswer: fit_bp<-lm(res_bp~consmp$income)
+  AnswerTests: omnitest(correctExpr='fit_bp<-lm(res_bp~consmp$income)')
+  Hint: hint
+  
+
+- Class: cmd_question
+  Output: Now calculate the regression sum of squares and store in 'rss' variable.'rss=sum((fitted(fit_bp)-mean(res_bp))^2)'
+  CorrectAnswer: rss=sum((fitted(fit_bp)-mean(res_bp))^2)
+  AnswerTests: omnitest(correctExpr='rss=sum((fitted(fit_bp)-mean(res_bp))^2)')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Calculate the test statistic and store in 'chi_cal'.
+  CorrectAnswer: chi_cal<-rss/2
+  AnswerTests: omnitest(correctExpr='chi_cal<-rss/2')
+  Hint: hint
+
+
+- Class: cmd_question
+  Output: The null hypothesis of homoscedasticity is all gamma coefficent is zero,and hence compute the critical chi-squared at k=1 df.use 'ch_tab<-qchisq(0.05,1,lower.tail=F)'. 
+  CorrectAnswer: chi_tab<-qchisq(0.05,1,lower.tail=F)
+  AnswerTests: omnitest(correctExpr='chi_tab<-qchisq(0.05,1,lower.tail=F)')
+  Hint: hint
+
+- Class: figure
+  Output: Thus,we reject the null hypothesis of homoscedasticity at the 5% significance level.
+  Figure: bp_test1.R
+  FigureType: new
+
+- Class: text
+  Output: The third test is 'white test'.This test involves applying OLS to':' e_hat_sq=g0+g1Z1i+g2Z2i+...+g_pZ_pi+ui and calculating the coefficient of determination R_w_sq, where e_i are OLS residuals from the original model. The null hypothesis is the coefficents are zero.The test statistic is chi_sq=n*R_w_sq.
+
+
+- Class: text
+  Output: The third test is 'white test'.This test involves applying OLS to':' e_hat_sq=g0+g1Z1i+g2Z2i+...+g_pZ_pi+ui and calculating the coefficient of determination R_w_sq, where e_i are OLS residuals from the original model. The null hypothesis is the coefficents are zero(g1=g2==gp).The test statistic is chi_sq=n*R_w_sq.
+
+- Class: text
+  Output: In this case our independent variable is only 'income', and hence 'p=2'. we will use z1=income and z2=income_squred. To write the 'X^2' as regressor, we will use identity function,'I()'.
+  
+
+- Class: cmd_question
+  Output: To apply 'White test', use the residual of the orginal OLS. I have saved for you in the variable 'res_wt', then run OLS. Use 'fit_wt<-lm(I(res_wt^2)~consmp$income+I(consmp$income^2))'
+  CorrectAnswer: fit_wt<-lm(I(res_wt^2)~consmp$income+I(consmp$income^2))
+  AnswerTests: omnitest(correctExpr='fit_wt<-lm(I(res_wt^2)~consmp$income+I(consmp$income^2))')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Determine the coeffiecnt of determination using 'Rw_2<-summary(fit_wt)$r.squared'
+  CorrectAnswer: Rw_2<-summary(fit_wt)$r.squared
+  AnswerTests: omnitest(correctExpr='Rw_2<-summary(fit_wt)$r.squared')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now calculate the test statistic using 'nrow() of the data consmp'and save it in 'chi_sq_wt' variable.
+  CorrectAnswer: chi_sq_wt<-nrow(consmp)*Rw_2
+  AnswerTests: omnitest(correctExpr='chi_sq_wt<-nrow(consmp)*Rw_2')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now look the value of the test statistic.
+  CorrectAnswer: chi_sq_wt
+  AnswerTests: omnitest(correctExpr='chi_sq_wt')
+  Hint: hint
+
+- Class: cmd_question
+  Output: The tabulated chisquare test value at df=2 is 'qchisq(0.05,2,lower.tail = FALSE)'
+  CorrectAnswer: qchisq(0.05,2,lower.tail = FALSE)
+  AnswerTests: omnitest(correctExpr='qchisq(0.05,2,lower.tail = FALSE)')
+  Hint: hint
+
+- Class: text
+  Output: Since the calculated(17.56228) is greater than the tabulated value, we reject the null hypothesis of homoscedasticity at the 5% level of significance.
+
+- Class: text
+  Output: All of the tests indicate that the disturbances are heteroscedastic. Thus, the regression 
+          coefficients obtained by OLS are not efficient. In such cases, we have to apply weighted least 
+          squares (WLS) estimation. The weights can be obtained from the sample at hand or from some 
+          prior knowledge. In this example, we will estimate the weights  from the sample
+
+- Class: text
+  Output: First we apply OLS estimation and obtain the residuals 'e_hat_i' . We then order the residuals based on the absolute magnitude of the explanatory variable (income). Next we divide the residuals into three parts':' the first and second parts consisting of seven residuals and the third part consisting of six residuals.The variance of each part is computed as sigma_hat_2=sum(e_hat_i_2)/ni, where ni isthe number of residuals in the ith part, i=1,2,3.
+  
+
+- Class: cmd_question
+  Output: Rememeber the orginal OLS result is stored in 'fit0' variable. Now sort the residual based on the explanatory variable income(Xi) and store it in 'res_sorted' variable.
+  CorrectAnswer: res_sorted<-resid(fit0)[order(consmp$income)]
+  AnswerTests: omnitest(correctExpr='res_sorted<-resid(fit0)[order(consmp$income)]')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Now calculate the estimate of variance in the first seven residuals(n1=2) and store in 'sigma_hat1' variable using the formula from slide.sigma_hat1<-sum(res_sorted[1:7]^2)/n1
+  CorrectAnswer: sigma_hat1<-sum(res_sorted[1:7]^2)/n1
+  AnswerTests: omnitest(correctExpr='sigma_hat1<-sum(res_sorted[1:7]^2)/n1')
+  Hint: Use res_sorted[1:7]
+
+- Class: cmd_question
+  Output: Similarly, estimate variance of the second seven residuals(n2=7) and store  it in 'sigma_hat2'. sigma_hat2<-sum(res_sorted[8:14]^2)/n2
+  CorrectAnswer: sigma_hat2<-sum(res_sorted[8:14]^2)/n2
+  AnswerTests: omnitest(correctExpr='sigma_hat2<-sum(res_sorted[8:14]^2)/n2')
+  Hint: Use res_sorted[8:14]
+
+- Class: cmd_question
+  Output: From the last six residuals(n3=6), estimate variance and store it in 'sigma_hat3'.sigma_hat3<-sum(res_sorted[15:20]^2)/n3
+  CorrectAnswer: sigma_hat3<-sum(res_sorted[15:20]^2)/n3
+  AnswerTests: omnitest(correctExpr='sigma_hat3<-sum(res_sorted[15:20]^2)/n3')
+  Hint: Use res_sorted[15:20]
+
+- Class: cmd_question
+  Output: Now create a 'weight' vector of stanadrd deviation of the above of size 20 'weight<-rep(c(sqrt(sigma_hat1),sqrt(sigma_hat2),sqrt(sigma_hat3)),c(7,7,6))'
+  CorrectAnswer: weight<-rep(c(sqrt(sigma_hat1),sqrt(sigma_hat2),sqrt(sigma_hat3)),c(7,7,6))
+  AnswerTests: omnitest(correctExpr='weight<-rep(c(sqrt(sigma_hat1),sqrt(sigma_hat2),sqrt(sigma_hat3)),c(7,7,6))')
+  Hint: Use rep(c(sqrt(var1),sqrt(var2)),c(n1,n2))
+
+- Class: cmd_question
+  Output: Run the vector of estimated standrd deviation of the residuals in 'x'.
+  CorrectAnswer: weight
+  AnswerTests: omnitest(correctExpr='weight')
+  Hint: hint
+
+- Class: cmd_question
+  Output: Using the above weight vector, run an OLS using a transformed data with out constant term (yi/wi=alpha(1/wi)+beta(xi/wi)+ei/wi) and store in 'fit_w1'.(that is fit_w1<-lm(I(expen/weight)~I(1/weight)+I(income/weight)-1,consmp_o))
+  CorrectAnswer: fit_w1<-lm(I(expen/weight)~I(1/weight)+I(income/weight)-1,consmp_o)
+  AnswerTests: omnitest(correctExpr='fit_w1<-lm(I(expen/weight)~I(1/weight)+I(income/weight)-1,consmp_o)')
+  Hint: Use indector function I()
+
+- Class: cmd_question
+  Output: Look your result using summary command. 'summary(fit_w1)'
+  CorrectAnswer: summary(fit_w1)
+  AnswerTests: omnitest(correctExpr='summary(fit_w1)')
+  Hint: hint
+
+- Class: mult_question
+  Output: From the transformed model, the coefficient of income and intercept is respectively
+  AnswerChoices:  0.9097 and 0.6586; 0.6586 and 0.9097;0.8993 and 0.8471
+  CorrectAnswer: 0.9097 and 0.6586
+  AnswerTests: omnitest(correctVal= '0.9097 and 0.6586')
+  Hint: hint
+
+
+
+- Class: figure
+  Output: The plot of the residuals of the transformed model against the explanatory variable (income) is shown here using command('plot(consmp_o$income,fit_w1$residuals)').It can be seen that the spread of the residuals has no increasing or decreasing pattern, i.e., there is no heteroscedasticity.
+  Figure: plot_w1.R
+  FigureType: new
+
+- Class: text
+  Output: Congrats! You've concluded this lesson on heteroscedasticity which are truly extraordinary!
+
+- Class: mult_question
+  Output: Would you like to submit the log of this lesson to Google Forms so
+    that your instructor (Mekelle University) may evaluate your progress?
+  AnswerChoices: Yes;No
+  CorrectAnswer: NULL
+  AnswerTests: submit_log()
+  Hint: hint
